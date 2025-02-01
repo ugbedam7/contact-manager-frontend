@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import HowItWorks from './HowItWorks';
 import PlatformFeatures from './PlatformFeatures';
+import AboutUs from './AboutUs';
+import ContactUs from './ContactUs';
 
 const Home = () => {
   return (
@@ -39,6 +41,8 @@ const Home = () => {
 
       <HowItWorks />
       <PlatformFeatures />
+      <AboutUs />
+      <ContactUs />
 
       <footer
         className="footer py-3 text-center"
