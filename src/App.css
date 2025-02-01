@@ -112,6 +112,15 @@ input {
   color: rgba(255, 255, 255, 0.55);
 }
 
+.Toastify__toast {
+  font-size: 16px;
+  background-color: #222;
+  color: #fff;
+}
+.Toastify__progress-bar {
+  background: #ff5733;
+}
+
 @media (max-width: 576px) {
   .hero-cta {
     width: 95%;
