@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Login = () => {
   const [data, setData] = useState({
@@ -8,7 +9,6 @@ const Login = () => {
     password: ''
   });
 
-  const [error, setError] = useState('');
   // const [token, setToken] = useState(null);
   const navigate = useNavigate();
 
@@ -25,29 +25,28 @@ const Login = () => {
       password: data.password
     };
 
-    const baseURL =
-      process.env.REACT_APP_API_BASE_URL ||
-      'https://shipping-app-backend-28vc.onrender.com';
+    const baseURL = 'http://localhost:5000';
 
+    // Axios automatically converts JavaScript objects into JSON when
+    // sending POST requests. You do not need to manually stringify userData.
+    // It sets the Content-Type header to application/json by default
     axios
-      .post(`${baseURL}/api/v1/login`, userData, {
-        withCredentials: true
-      })
+      .post(`${baseURL}/api/auth/login`, userData)
       .then((res) => {
         console.log(res.data);
-        if (res.data.success && res.data.role === 'sender') {
-          setTimeout(() => navigate('/dashboard/sender'), 500);
-        } else if (res.data.success && res.data.role === 'traveler') {
-          setTimeout(() => navigate('/dashboard/traveler'), 500);
-        } else if (res.data.success && res.data.role === 'admin') {
-          setTimeout(() => navigate('/dashboard/admin'), 500);
+        if (res.data.success) {
+          const token = res.data.accessToken;
+          sessionStorage.setItem('accessToken', token);
+          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+          toast.success(res.data.message);
+          setTimeout(() => navigate('/dashboard'), 3000);
         } else {
-          setError(`An error occurred during login: ${res.data.Error}`);
+          toast.error(res.data.error);
         }
       })
-      .catch((error) => {
-        console.log(error);
-        setError('Login failed. Please try again.');
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -62,15 +61,7 @@ const Login = () => {
               <div className="d-flex flex-row align-content-center justify-content-center">
                 <h1 className="text-3xl font-semibold ">Login</h1>
               </div>
-              <p
-                style={{
-                  color: 'red',
-                  fontSize: '20px',
-                  textAlign: 'center',
-                  marginTop: '20px'
-                }}>
-                {error && error}
-              </p>
+
               <div className="form-outline mb-3">
                 <label className="form-label mb-1 fs-5" htmlFor="email">
                   Email Address
@@ -129,6 +120,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

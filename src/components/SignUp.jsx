@@ -38,7 +38,6 @@ export const SignUp = () => {
     try {
       const res = await fetch(`${baseURL}/api/auth/register`, {
         method: 'POST',
-        credentials: 'include',
         headers: {
           'Content-Type': 'application/json'
         },
