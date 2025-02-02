@@ -29,18 +29,21 @@ const Login = () => {
     try {
       const res = await axios.post(`${baseURL}/api/auth/login`, data);
 
-      const { success, accessToken, message, error } = res.data;
+      const { success, accessToken, message } = res.data;
+      console.log(res.data);
 
       if (success) {
         login(accessToken);
         toast.success(message);
         setTimeout(() => navigate('/dashboard'), 2000);
-      } else {
-        toast.error(error);
       }
     } catch (err) {
-      console.error(err);
-      toast.error(err.message);
+      // Check if the error response exists and extract the error message
+      if (err.response && err.response.data) {
+        toast.error(err.response.data.error || 'An error occurred');
+      } else {
+        toast.error(err.message);
+      }
     }
   };
 
