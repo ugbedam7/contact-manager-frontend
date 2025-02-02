@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+import { useAuth } from './AuthContext';
 
 const Login = () => {
   const [data, setData] = useState({
@@ -9,45 +10,38 @@ const Login = () => {
     password: ''
   });
 
-  // const [token, setToken] = useState(null);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     const value = e.target.value;
     setData({ ...data, [e.target.name]: value });
   };
 
-  const login = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
-    const userData = {
-      email: data.email,
-      password: data.password
-    };
 
     const baseURL = 'http://localhost:5000';
 
     // Axios automatically converts JavaScript objects into JSON when
     // sending POST requests. You do not need to manually stringify userData.
     // It sets the Content-Type header to application/json by default
-    axios
-      .post(`${baseURL}/api/auth/login`, userData)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data.success) {
-          const token = res.data.accessToken;
-          sessionStorage.setItem('accessToken', token);
-          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    try {
+      const res = await axios.post(`${baseURL}/api/auth/login`, data);
 
-          toast.success(res.data.message);
-          setTimeout(() => navigate('/dashboard'), 3000);
-        } else {
-          toast.error(res.data.error);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      const { success, accessToken, message, error } = res.data;
+
+      if (success) {
+        login(accessToken);
+        toast.success(message);
+        setTimeout(() => navigate('/dashboard'), 2000);
+      } else {
+        toast.error(error);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error(err.message);
+    }
   };
 
   return (
@@ -57,7 +51,7 @@ const Login = () => {
       <div className="container h-custom">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-md-8 col-lg-6 col-xl-4 login log-in">
-            <form onSubmit={login}>
+            <form onSubmit={handleLogin}>
               <div className="d-flex flex-row align-content-center justify-content-center">
                 <h1 className="text-3xl font-semibold ">Login</h1>
               </div>
