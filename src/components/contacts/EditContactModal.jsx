@@ -84,7 +84,6 @@ const EditContact = ({ contact, setContacts }) => {
                     <Input
                       bg={useColorModeValue('white', 'gray.800')}
                       color={useColorModeValue('gray.900', 'white')}
-                      placeholder="John Doe"
                       value={inputs.name}
                       onChange={(e) =>
                         setInputs((prev) => ({ ...prev, name: e.target.value }))
@@ -95,7 +94,6 @@ const EditContact = ({ contact, setContacts }) => {
                     <Input
                       bg={useColorModeValue('white', 'gray.800')}
                       color={useColorModeValue('gray.900', 'white')}
-                      placeholder="Email Address"
                       value={inputs.email}
                       onChange={(e) =>
                         setInputs((prev) => ({
@@ -110,7 +108,6 @@ const EditContact = ({ contact, setContacts }) => {
                     <Input
                       bg={useColorModeValue('white', 'gray.800')}
                       color={useColorModeValue('gray.900', 'white')}
-                      placeholder="Phone Number"
                       value={inputs.phone}
                       onChange={(e) =>
                         setInputs((prev) => ({
@@ -125,7 +122,6 @@ const EditContact = ({ contact, setContacts }) => {
                   <Textarea
                     resize={'none'}
                     overflowY={'hidden'}
-                    placeholder="#56 Park Avenue, New York, USA"
                     value={inputs.address}
                     onChange={(e) =>
                       setInputs((prev) => ({
