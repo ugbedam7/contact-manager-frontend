@@ -4,7 +4,9 @@ import axios from 'axios';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // Initialize isAuthenticated based on sessionStorage
+  const storedToken = sessionStorage.getItem('authToken');
+  const [isAuthenticated, setIsAuthenticated] = useState(!!storedToken);
 
   useEffect(() => {
     const token = sessionStorage.getItem('authToken');
@@ -12,7 +14,7 @@ export const AuthProvider = ({ children }) => {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setIsAuthenticated(true);
     }
-  }, []);
+  }, [storedToken]);
 
   const login = (token) => {
     sessionStorage.setItem('authToken', token);
