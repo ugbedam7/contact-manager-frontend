@@ -4,11 +4,12 @@ import axios from 'axios';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  // Initialize isAuthenticated based on sessionStorage
+  // Initialize isAuthenticated based on session storage
   const storedToken = sessionStorage.getItem('authToken');
   const [isAuthenticated, setIsAuthenticated] = useState(!!storedToken);
 
   useEffect(() => {
+    // Check authentication from session storage or API
     const token = sessionStorage.getItem('authToken');
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;

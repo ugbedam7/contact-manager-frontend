@@ -1,12 +1,13 @@
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
-import Navbar from './components/Navbar';
-import Home from './components/Index';
-import { SignUp } from './components/SignUp';
-import Login from './components/Login';
-import Dashboard from './components/Dashboard';
+import Navbar from './components/common/Navbar';
+import Home from './pages/home/Index';
+import { SignUp } from './pages/auth/SignUp';
+import Login from './pages/auth/Login';
+import Dashboard from './components/common/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './components/AuthContext';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function MainLayout() {
           }
         />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-import { useAuth } from './AuthContext';
+import { useAuth } from '../../components/AuthContext';
 
 const Login = () => {
   const [data, setData] = useState({
