@@ -18,6 +18,7 @@ import {
 import { useColorModeValue } from '@/components/ui/color-mode';
 import { BiEditAlt } from 'react-icons/bi';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const BASE_URL = 'http://localhost:5000';
 
@@ -35,24 +36,31 @@ const EditContact = ({ contact, setContacts }) => {
     setIsLoading(true);
 
     try {
-      const res = await fetch(`${BASE_URL}/api/contacts/${contact.id}`, {
+      const res = await fetch(`${BASE_URL}/api/contacts/${contact._id}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
+        },
         body: JSON.stringify(inputs)
       });
 
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.Error);
-      }
-      setOpen(false);
-      setContacts((prevContacts) =>
-        prevContacts.map((c) => (c.id === contact.id ? data.data : u))
-      );
+      const result = await res.json();
 
-      console.log(data.message);
+      if (!res.ok) {
+        throw new Error(result.error);
+      }
+      toast.success(result.message);
+      setOpen(false);
+      // This ensures the UI reflects the changes without
+      // requiring a full page reload.
+      setContacts((prevContacts) =>
+        prevContacts.map((c) =>
+          c._id === contact._id ? result.updatedContact : c
+        )
+      );
     } catch (err) {
-      console.log(err.message);
+      toast.error(err.message);
     } finally {
       setIsLoading(false);
     }
@@ -70,7 +78,7 @@ const EditContact = ({ contact, setContacts }) => {
           </Icon>
         </DialogTrigger>
         {/* Ensure each dialog's trigger and form elements are unique to avoid collisions */}
-        <form onSubmit={handleEditContact} id={`edit-id-${contact.id}`}>
+        <form onSubmit={handleEditContact} id={`edit-id-${contact._id}`}>
           <DialogContent
             bg={useColorModeValue('gray.100', 'gray.700')}
             color={useColorModeValue('gray.900', 'white')}>
@@ -140,7 +148,7 @@ const EditContact = ({ contact, setContacts }) => {
               <Button
                 bg="cyan.400"
                 type="submit"
-                form={`edit-id-${contact.id}`}
+                form={`edit-id-${contact._id}`}
                 isDisabled={isLoading}>
                 {isLoading ? (
                   <Flex justifyContent={'center'}>

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 const BASE_URL = 'http://localhost:5000';
 
-const ContactGrid = ({ contacts, setContacts }) => {
+const ContactGrid = ({ contacts = [], setContacts }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -12,7 +12,6 @@ const ContactGrid = ({ contacts, setContacts }) => {
       setIsLoading(true);
       try {
         const res = await fetch(`${BASE_URL}/api/contacts`);
-
         const data = await res.json();
 
         if (!res.ok) throw new Error(data.error);
