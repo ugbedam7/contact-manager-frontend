@@ -33,7 +33,7 @@ export const SignUp = () => {
       password: data.password
     };
 
-    const baseURL = 'http://localhost:5000';
+    const baseURL = 'https://contact-app-be-t5jz.onrender.com';
 
     try {
       const res = await fetch(`${baseURL}/api/auth/register`, {
