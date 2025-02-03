@@ -11,9 +11,7 @@ const ContactGrid = ({ contacts, setContacts }) => {
     const getContacts = async () => {
       setIsLoading(true);
       try {
-        const res = await fetch(`${BASE_URL}/api/contacts`, {
-          method: 'GET'
-        });
+        const res = await fetch(`${BASE_URL}/api/contacts`);
 
         const data = await res.json();
 

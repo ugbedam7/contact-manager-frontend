@@ -32,7 +32,7 @@ const ContactCard = ({ contact, setContacts }) => {
     <Card.Root bg={useColorModeValue('#fff', 'gray.700')}>
       <Card.Header>
         <Flex gap={4}>
-          <Flex flex={'1'} gap={'4'} alignItems={'center'}>
+          <Flex flex={'1'} gap={'4'} alignItems={'start'}>
             <Avatar src={contact.imgUrl} />
             <Box>
               <Heading fontWeight="semibold" textStyle="xl">
@@ -42,6 +42,7 @@ const ContactCard = ({ contact, setContacts }) => {
               <Text color="fg.muted" textStyle="md">
                 {contact.phone}
               </Text>
+              <Text>{contact.address}</Text>
             </Box>
           </Flex>
           <Flex>
@@ -56,9 +57,6 @@ const ContactCard = ({ contact, setContacts }) => {
           </Flex>
         </Flex>
       </Card.Header>
-      <Card.Body>
-        <Text>{contact.address}</Text>
-      </Card.Body>
     </Card.Root>
   );
 };
