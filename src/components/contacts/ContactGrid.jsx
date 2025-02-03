@@ -2,7 +2,7 @@ import { Grid, Text, Flex } from '@chakra-ui/react';
 import ContactCard from './ContactCard';
 import { useEffect, useState } from 'react';
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'https://contact-app-be-t5jz.onrender.com';
 
 const ContactGrid = ({ contacts = [], setContacts }) => {
   const [isLoading, setIsLoading] = useState(false);

@@ -20,7 +20,7 @@ import { BiEditAlt } from 'react-icons/bi';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'https://contact-app-be-t5jz.onrender.com';
 
 const EditContact = ({ contact, setContacts }) => {
   const [isLoading, setIsLoading] = useState(false);
