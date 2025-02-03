@@ -3,14 +3,18 @@ import { BiTrash } from 'react-icons/bi';
 import { Avatar } from '@/components/ui/avatar';
 import { useColorModeValue } from '@/components/ui/color-mode';
 import EditContact from './EditContactModal';
+import { toast } from 'react-toastify';
 
 const BASE_URL = 'http://localhost:5000';
 
 const ContactCard = ({ contact, setContacts }) => {
   const handleDeleteContact = async () => {
     try {
-      const res = await fetch(`${BASE_URL}/api/contacts/${contact.id}`, {
-        method: 'DELETE'
+      const res = await fetch(`${BASE_URL}/api/contacts/${contact._id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
+        }
       });
 
       const data = await res.json();
@@ -20,11 +24,11 @@ const ContactCard = ({ contact, setContacts }) => {
       }
 
       setContacts((prevContacts) =>
-        prevContacts.filter((u) => u.id !== contact.id)
+        prevContacts.filter((u) => u._id !== contact._id)
       );
-      console.log(data.message);
+      toast.success(data.message);
     } catch (err) {
-      console.log(err.message);
+      toast.error(err.message);
     }
   };
 
