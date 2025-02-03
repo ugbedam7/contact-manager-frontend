@@ -29,7 +29,7 @@ function MainLayout() {
   return (
     <div>
       {showNavbar && <Navbar />}
-
+      <ToastContainer position="top-right" autoClose={2000} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
