@@ -30,7 +30,6 @@ const Login = () => {
       const res = await axios.post(`${baseURL}/api/auth/login`, data);
 
       const { success, accessToken, message } = res.data;
-      console.log(res.data);
 
       if (success) {
         login(accessToken);
