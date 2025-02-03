@@ -49,10 +49,10 @@ const ContactCard = ({ contact, setContacts }) => {
                 {contact.name}
               </Heading>
               <Text marginBottom={'0'}>{contact.email}</Text>
+              <Text>{contact.phone}</Text>
               <Text color="fg.muted" textStyle="md">
-                {contact.phone}
+                {contact.address}
               </Text>
-              <Text>{contact.address}</Text>
             </Box>
           </Flex>
           <Flex>
