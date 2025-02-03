@@ -176,7 +176,11 @@ const CreateContactModal = ({ setContacts }) => {
             <DialogActionTrigger asChild>
               <Button variant="outline">Cancel</Button>
             </DialogActionTrigger>
-            <Button bg="cyan.400" type="submit" isDisabled={isLoading}>
+            <Button
+              bg="cyan.400"
+              type="submit"
+              isDisabled={isLoading}
+              borderRadius={5}>
               {isLoading ? (
                 <Flex justifyContent={'center'}>
                   <img

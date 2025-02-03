@@ -3,7 +3,7 @@ import { BiTrash } from 'react-icons/bi';
 import { Avatar } from '@/components/ui/avatar';
 import { useColorModeValue } from '@/components/ui/color-mode';
 import EditContact from './EditContactModal';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 const BASE_URL = 'http://localhost:5000';
 
@@ -17,23 +17,29 @@ const ContactCard = ({ contact, setContacts }) => {
         }
       });
 
-      const data = await res.json();
+      const result = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error);
+        throw new Error(result.error);
       }
 
       setContacts((prevContacts) =>
         prevContacts.filter((u) => u._id !== contact._id)
       );
-      toast.success(data.message);
+      toast.success(result.message);
     } catch (err) {
       toast.error(err.message);
     }
   };
 
   return (
-    <Card.Root bg={useColorModeValue('#fff', 'gray.700')}>
+    <Card.Root
+      bg={useColorModeValue('#fff', 'gray.700')}
+      transform={'scale(1)'}
+      transition={'all 0.3s'}
+      _hover={{ transform: 'scale(1.02)' }}
+      boxShadow={'md'}
+      borderRadius={'md'}>
       <Card.Header>
         <Flex gap={4}>
           <Flex flex={'1'} gap={'4'} alignItems={'start'}>
@@ -61,6 +67,7 @@ const ContactCard = ({ contact, setContacts }) => {
           </Flex>
         </Flex>
       </Card.Header>
+      <ToastContainer />
     </Card.Root>
   );
 };

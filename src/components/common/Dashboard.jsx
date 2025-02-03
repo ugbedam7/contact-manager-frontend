@@ -6,8 +6,18 @@ import ContactGrid from '../contacts/ContactGrid';
 import { FiLogOut } from 'react-icons/fi';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import { useAuth } from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
   const [contacts, setContacts] = useState([]);
   return (
     <Stack bg={{ base: 'white', _dark: '#1A202C' }} minH={'100vh'}>
@@ -28,7 +38,7 @@ const Dashboard = () => {
               gap={3}
               display={{ base: 'none', sm: 'flex' }}>
               <Button variant="outline">
-                <FiLogOut />
+                <FiLogOut onClick={handleLogout} />
               </Button>
             </Flex>
           </Flex>

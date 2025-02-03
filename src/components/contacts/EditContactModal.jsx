@@ -149,7 +149,8 @@ const EditContact = ({ contact, setContacts }) => {
                 bg="cyan.400"
                 type="submit"
                 form={`edit-id-${contact._id}`}
-                isDisabled={isLoading}>
+                isDisabled={isLoading}
+                borderRadius={5}>
                 {isLoading ? (
                   <Flex justifyContent={'center'}>
                     <img
