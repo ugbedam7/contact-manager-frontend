@@ -24,7 +24,7 @@ const ContactUs = () => {
 
           <Button
             className="border-0"
-            style={{ backgroundColor: '#FF6934' }}
+            style={{ backgroundColor: '#1A202C' }}
             type="submit">
             Send Message
           </Button>
