@@ -140,8 +140,7 @@ export const SignUp = () => {
               <div className="text-center text-lg-start mt-4 pt-2">
                 <button
                   type="submit"
-                  className="btn text-white w-100"
-                  style={{ backgroundColor: '#FF6934' }}>
+                  className="btn text-white w-100 signup-btn">
                   Sign Up
                 </button>
                 <p className="small fw-bold mt-2 pt-1 mb-0">

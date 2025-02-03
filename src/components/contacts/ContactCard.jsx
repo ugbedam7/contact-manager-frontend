@@ -3,7 +3,7 @@ import { BiTrash } from 'react-icons/bi';
 import { Avatar } from '@/components/ui/avatar';
 import { useColorModeValue } from '@/components/ui/color-mode';
 import EditContact from './EditContactModal';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const BASE_URL = 'http://localhost:5000';
 
@@ -67,7 +67,6 @@ const ContactCard = ({ contact, setContacts }) => {
           </Flex>
         </Flex>
       </Card.Header>
-      <ToastContainer />
     </Card.Root>
   );
 };

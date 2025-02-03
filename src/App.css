@@ -68,9 +68,27 @@ body {
   color: #1a202c;
 }
 
+.login-btn {
+  background-color: #1a202c;
+}
+
+.log-in:hover .login-btn {
+  background-color: #565b65;
+  color: #fff;
+}
+
 .signup:hover input {
   background: #fff;
   color: #1a202c;
+}
+
+.signup-btn {
+  background-color: #1a202c;
+}
+
+.signup:hover .signup-btn {
+  background-color: #565b65;
+  color: #fff;
 }
 
 .input-control {

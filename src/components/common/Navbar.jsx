@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import { Nav } from 'react-bootstrap';
+import { Text } from '@chakra-ui/react';
 
 const Navbar = () => {
   return (
@@ -10,9 +11,15 @@ const Navbar = () => {
       <div className="container">
         <Link className="navbar-brand text-white fs-4 h2" to="/">
           Contact
-          <span style={{ color: '#FF6934' }} className="fs-2 fw-semibold">
+          <Text
+            as={'span'}
+            bgGradient="to-r"
+            gradientFrom="cyan.400"
+            gradientTo="blue.500"
+            bgClip={'text'}
+            className="fs-2 fw-semibold">
             Vault
-          </span>
+          </Text>
         </Link>
         <button
           className="navbar-toggler"
@@ -75,7 +82,7 @@ const Navbar = () => {
             <Link
               to="/signup"
               className="btn text-white"
-              style={{ backgroundColor: '#FF6934' }}>
+              style={{ backgroundColor: '#565b65' }}>
               Sign Up
             </Link>
           </div>

@@ -29,8 +29,8 @@ const Home = () => {
               to="/signup"
               className="btn btn-lg"
               style={{
-                backgroundColor: '#FF6934',
-                color: '#ffffff',
+                backgroundColor: '#1A202C',
+                color: '#fff',
                 marginRight: '10px'
               }}>
               Get Started

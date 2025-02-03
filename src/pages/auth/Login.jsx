@@ -101,8 +101,7 @@ const Login = () => {
               </div>
               <div className="text-center text-lg-start mt-4 pt2">
                 <button
-                  className="btn text-white w-100 text-white"
-                  style={{ backgroundColor: '#FF6934' }}
+                  className="btn text-white w-100 text-white rounded-3 login-btn"
                   type="submit">
                   Login
                 </button>

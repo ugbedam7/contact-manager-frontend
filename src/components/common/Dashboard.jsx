@@ -36,7 +36,7 @@ const Dashboard = () => {
               alignItems={'center'}
               justifyContent={'center'}
               gap={3}
-              display={{ base: 'none', sm: 'flex' }}>
+              display={{ base: 'block', sm: 'flex' }}>
               <Button variant="outline">
                 <FiLogOut onClick={handleLogout} />
               </Button>
