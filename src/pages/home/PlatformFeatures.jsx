@@ -9,19 +9,32 @@ import {
 } from 'react-icons/fa';
 import { Element } from 'react-scroll';
 
+import { motion } from 'framer-motion';
+
+const fadeInVariant = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
 const PlatformFeatures = () => {
   return (
     <Element name="features">
       <Container className="my-5">
-        <h2 className="text-center mb-4">Platform Features</h2>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInVariant}>
+          <h2 className="text-center mb-4">Platform Features</h2>
 
-        <p
-          className="text-center fs-5 text-muted mx-auto"
-          style={{ maxWidth: '700px' }}>
-          Our platform is built with advanced features to help you stay
-          organized, automate workflows, and access your contacts securely from
-          anywhere.
-        </p>
+          <p
+            className="text-center fs-5 text-muted mx-auto"
+            style={{ maxWidth: '700px' }}>
+            Our platform is built with advanced features to help you stay
+            organized, automate workflows, and access your contacts securely
+            from anywhere.
+          </p>
+        </motion.div>
 
         <Row className="gy-4">
           {[
