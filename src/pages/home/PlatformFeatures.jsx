@@ -14,6 +14,15 @@ const PlatformFeatures = () => {
     <Element name="features">
       <Container className="my-5">
         <h2 className="text-center mb-4">Platform Features</h2>
+
+        <p
+          className="text-center text-muted mx-auto"
+          style={{ maxWidth: '700px' }}>
+          Our platform is built with advanced features to help you stay
+          organized, automate workflows, and access your contacts securely from
+          anywhere.
+        </p>
+
         <Row className="gy-4">
           {[
             {
