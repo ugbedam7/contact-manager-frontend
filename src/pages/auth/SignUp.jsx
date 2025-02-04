@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../App';
 
 export const SignUp = () => {
   const [isLoginActive, setLoginActive] = useState(false);
@@ -33,10 +34,8 @@ export const SignUp = () => {
       password: data.password
     };
 
-    const baseURL = 'https://contact-app-be-t5jz.onrender.com';
-
     try {
-      const res = await fetch(`${baseURL}/api/auth/register`, {
+      const res = await fetch(`${BASE_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

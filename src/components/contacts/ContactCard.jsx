@@ -4,8 +4,7 @@ import { Avatar } from '@/components/ui/avatar';
 import { useColorModeValue } from '@/components/ui/color-mode';
 import EditContact from './EditContactModal';
 import { toast } from 'react-toastify';
-
-const BASE_URL = 'https://contact-app-be-t5jz.onrender.com';
+import { BASE_URL } from '../../App';
 
 const ContactCard = ({ contact, setContacts }) => {
   const handleDeleteContact = async () => {

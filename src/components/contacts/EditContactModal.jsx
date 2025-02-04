@@ -19,8 +19,7 @@ import { useColorModeValue } from '@/components/ui/color-mode';
 import { BiEditAlt } from 'react-icons/bi';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-
-const BASE_URL = 'https://contact-app-be-t5jz.onrender.com';
+import { BASE_URL } from '../../App';
 
 const EditContact = ({ contact, setContacts }) => {
   const [isLoading, setIsLoading] = useState(false);

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { useAuth } from '../../components/AuthContext';
+import { BASE_URL } from '../../App';
 
 const Login = () => {
   const [data, setData] = useState({
@@ -21,13 +22,11 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const baseURL = 'https://contact-app-be-t5jz.onrender.com';
-
     // Axios automatically converts JavaScript objects into JSON when
     // sending POST requests. You do not need to manually stringify userData.
     // It sets the Content-Type header to application/json by default
     try {
-      const res = await axios.post(`${baseURL}/api/auth/login`, data);
+      const res = await axios.post(`${BASE_URL}/api/auth/login`, data);
 
       const { success, accessToken, message } = res.data;
 
