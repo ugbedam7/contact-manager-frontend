@@ -6,6 +6,14 @@ const ContactUs = () => {
     <Element name="contact">
       <Container className="my-5">
         <h2 className="text-center mb-4">Contact Us</h2>
+
+        <p
+          className="text-center text-muted mx-auto"
+          style={{ maxWidth: '700px' }}>
+          Have questions or need support? Get in touch with our team, and we’ll
+          be happy to help!
+        </p>
+
         <Form className="mx-auto" style={{ maxWidth: '500px' }}>
           <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>
