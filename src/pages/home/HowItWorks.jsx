@@ -1,17 +1,30 @@
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { FaUsers, FaSync, FaTag, FaClock } from 'react-icons/fa';
 
+import { motion } from 'framer-motion';
+
+const fadeInVariant = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
 const HowItWorks = () => {
   return (
     <Container className="my-5">
-      <h2 className="text-center mb-4">How It Works</h2>
-      <p
-        className="text-center fs-5 text-muted mx-auto"
-        style={{ maxWidth: '700px' }}>
-        Easily manage your contacts with seamless integration, smart
-        categorization, and automated tracking. Whether you're an individual or
-        a business, our platform ensures smooth contact management.
-      </p>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInVariant}>
+        <h2 className="text-center mb-4">How It Works</h2>
+        <p
+          className="text-center fs-5 text-muted mx-auto"
+          style={{ maxWidth: '700px' }}>
+          Easily manage your contacts with seamless integration, smart
+          categorization, and automated tracking. Whether you're an individual
+          or a business, our platform ensures smooth contact management.
+        </p>
+      </motion.div>
       <Row className="gy-4">
         {[
           {
