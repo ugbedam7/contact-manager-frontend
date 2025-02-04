@@ -9,8 +9,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './components/AuthContext';
 import { ToastContainer } from 'react-toastify';
 
-export const BASE_URL = 'http://localhost:5000';
-//export const BASE_URL = 'https://contact-app-be-t5jz.onrender.com';
+// export const BASE_URL = 'http://localhost:5000';
+export const BASE_URL = 'https://contact-app-be-t5jz.onrender.com';
 
 function App() {
   return (
