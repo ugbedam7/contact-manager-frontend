@@ -6,7 +6,7 @@ const HowItWorks = () => {
     <Container className="my-5">
       <h2 className="text-center mb-4">How It Works</h2>
       <p
-        className="text-center text-muted mx-auto"
+        className="text-center fs-5 text-muted mx-auto"
         style={{ maxWidth: '700px' }}>
         Easily manage your contacts with seamless integration, smart
         categorization, and automated tracking. Whether you're an individual or

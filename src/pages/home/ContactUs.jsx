@@ -8,7 +8,7 @@ const ContactUs = () => {
         <h2 className="text-center mb-4">Contact Us</h2>
 
         <p
-          className="text-center text-muted mx-auto"
+          className="text-center fs-5 text-muted mx-auto"
           style={{ maxWidth: '700px' }}>
           Have questions or need support? Get in touch with our team, and we’ll
           be happy to help!

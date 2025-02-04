@@ -16,7 +16,7 @@ const PlatformFeatures = () => {
         <h2 className="text-center mb-4">Platform Features</h2>
 
         <p
-          className="text-center text-muted mx-auto"
+          className="text-center fs-5 text-muted mx-auto"
           style={{ maxWidth: '700px' }}>
           Our platform is built with advanced features to help you stay
           organized, automate workflows, and access your contacts securely from
