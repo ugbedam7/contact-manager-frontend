@@ -10,15 +10,21 @@ import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  const [contacts, setContacts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
   const { logout } = useAuth();
   const navigate = useNavigate();
+
+  const handleSearchChange = (value) => {
+    setSearchQuery(value);
+  };
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
 
-  const [contacts, setContacts] = useState([]);
   return (
     <Stack bg={{ base: 'white', _dark: '#1A202C' }} minH={'100vh'}>
       <Container maxW={'900px'}>
@@ -37,6 +43,8 @@ const Dashboard = () => {
                 bg={useColorModeValue('white', 'gray.800')}
                 color={useColorModeValue('gray.900', 'white')}
                 placeholder="Search contacts"
+                value={searchQuery}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 size="sm"
                 pl={5}
               />
@@ -84,7 +92,11 @@ const Dashboard = () => {
             Contacts List
           </Text>
         </Text>
-        <ContactGrid contacts={contacts} setContacts={setContacts} />
+        <ContactGrid
+          contacts={contacts}
+          setContacts={setContacts}
+          searchQuery={searchQuery}
+        />
       </Container>
     </Stack>
   );

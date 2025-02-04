@@ -3,7 +3,7 @@ import ContactCard from './ContactCard';
 import { useEffect, useState } from 'react';
 import { BASE_URL } from '../../App';
 
-const ContactGrid = ({ contacts = [], setContacts }) => {
+const ContactGrid = ({ contacts = [], setContacts, searchQuery }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -25,6 +25,13 @@ const ContactGrid = ({ contacts = [], setContacts }) => {
     getContacts();
   }, []);
 
+  // If searchQuery is empty (""), .includes("") will always return true,
+  // meaning all contacts will be displayed.If searchQuery contains text,
+  // only matching contacts will be shown.
+  const filteredContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   if (isLoading) {
     return (
       <Flex justifyContent={'center'}>
@@ -33,7 +40,7 @@ const ContactGrid = ({ contacts = [], setContacts }) => {
     );
   }
 
-  if (!isLoading && contacts.length === 0) {
+  if (!isLoading && filteredContacts.length === 0) {
     return (
       <Flex justifyContent="center">
         <Text fontSize="xl" color={'white'}>
@@ -54,7 +61,7 @@ const ContactGrid = ({ contacts = [], setContacts }) => {
         lg: 'repeat(3, 1fr)'
       }}
       gap={4}>
-      {contacts.map((contact) => (
+      {filteredContacts.map((contact) => (
         <ContactCard
           key={contact.id}
           contact={contact}
