@@ -17,14 +17,16 @@ export const AuthProvider = ({ children }) => {
     }
   }, [storedToken]);
 
-  const login = (token) => {
+  const login = (token, user) => {
     sessionStorage.setItem('authToken', token);
+    sessionStorage.setItem('user', user.fullname);
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     setIsAuthenticated(true);
   };
 
   const logout = () => {
     sessionStorage.removeItem('authToken');
+    sessionStorage.removeItem('user');
     delete axios.defaults.headers.common['Authorization'];
     setIsAuthenticated(false);
   };

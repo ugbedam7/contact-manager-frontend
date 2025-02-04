@@ -1,4 +1,4 @@
-import { Container, Box, Stack, Flex, Text } from '@chakra-ui/react';
+import { Container, Box, Stack, Flex, Text, Input } from '@chakra-ui/react';
 import { ColorModeButton } from '@/components/ui/color-mode';
 import { useColorModeValue } from '@/components/ui/color-mode';
 import CreateContactModal from '../contacts/CreateContactModal';
@@ -32,11 +32,33 @@ const Dashboard = () => {
               <ColorModeButton />
               <CreateContactModal setContacts={setContacts} />
             </Flex>
+            <Flex gap={3} alignItems={'center'}>
+              <Input
+                bg={useColorModeValue('white', 'gray.800')}
+                color={useColorModeValue('gray.900', 'white')}
+                placeholder="Search contacts"
+                size="sm"
+                pl={5}
+              />
+            </Flex>
+
             <Flex
               alignItems={'center'}
               justifyContent={'center'}
               gap={3}
               display={{ base: 'block', sm: 'flex' }}>
+              <Flex
+                gap={3}
+                alignItems={'center'}
+                display={{ base: 'none', md: 'block' }}>
+                <Box
+                  fontSize="md"
+                  fontWeight="semibold"
+                  color={useColorModeValue('gray.900', 'white')}>
+                  {sessionStorage.getItem('user')}
+                </Box>
+              </Flex>
+
               <Button variant="outline">
                 <FiLogOut onClick={handleLogout} />
               </Button>
@@ -59,7 +81,7 @@ const Dashboard = () => {
             gradientFrom="cyan.400"
             gradientTo="blue.500"
             bgClip={'text'}>
-            Contact List
+            Contacts List
           </Text>
         </Text>
         <ContactGrid contacts={contacts} setContacts={setContacts} />

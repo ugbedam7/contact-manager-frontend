@@ -28,10 +28,10 @@ const Login = () => {
     try {
       const res = await axios.post(`${BASE_URL}/api/auth/login`, data);
 
-      const { success, accessToken, message } = res.data;
+      const { success, accessToken, message, user } = res.data;
 
       if (success) {
-        login(accessToken);
+        login(accessToken, user);
         toast.success(message);
         setTimeout(() => navigate('/dashboard'), 2000);
       }
