@@ -7,12 +7,12 @@ const Navbar = () => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark w-100 fixed-top shadow-sm p-3 mb-5 rounded"
-      style={{ backgroundColor: '#1A202C', height: '80px' }}>
+      style={{ backgroundColor: '#1A202C', height: '85px' }}>
       <div className="container">
         <Link
           className="navbar-brand text-white fs-4 h2 d-flex align-items-center"
           to="/">
-          <div style={{ width: '80px', height: '70px' }}>
+          <div className="logo-container">
             <ContactVaultLogo />
           </div>
         </Link>
@@ -27,8 +27,8 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-end w-75">
-            <li className="nav-item">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-end w-75 dropdown-menu">
+            <li className="nav-item drop-item">
               <Link
                 className="nav-link active text-white"
                 aria-current="page"
@@ -36,7 +36,7 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item drop-item">
               <Nav.Link
                 as={ScrollLink}
                 to="about"
@@ -44,11 +44,11 @@ const Navbar = () => {
                 duration={1000}
                 offset={-100}
                 style={{ cursor: 'pointer' }}
-                className="nav-link active text-white ">
+                className="nav-link active text-white">
                 About
               </Nav.Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item drop-item">
               <Nav.Link
                 as={ScrollLink}
                 to="contact"
@@ -60,7 +60,7 @@ const Navbar = () => {
                 Contact Us
               </Nav.Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item drop-item me-5 pr-5">
               <Nav.Link
                 as={ScrollLink}
                 to="features"
@@ -68,19 +68,20 @@ const Navbar = () => {
                 duration={1000}
                 offset={-100}
                 style={{ cursor: 'pointer' }}
-                className="nav-link text-white">
+                className="nav-link active text-white">
                 Features
               </Nav.Link>
             </li>
+
+            <li className="d-flex">
+              <Link
+                to="/signup"
+                className="btn text-white "
+                style={{ backgroundColor: '#565b65' }}>
+                Sign Up
+              </Link>
+            </li>
           </ul>
-          <div className="d-flex">
-            <Link
-              to="/signup"
-              className="btn text-white"
-              style={{ backgroundColor: '#565b65' }}>
-              Sign Up
-            </Link>
-          </div>
         </div>
       </div>
     </nav>

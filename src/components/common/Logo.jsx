@@ -1,8 +1,7 @@
 export const ContactVaultLogo = () => {
   return (
     <svg
-      width="90"
-      height="95"
+      className="responsive-logo"
       viewBox="0 0 200 250"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
