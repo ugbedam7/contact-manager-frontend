@@ -1,25 +1,20 @@
 import { Link } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import { Nav } from 'react-bootstrap';
-import { Text } from '@chakra-ui/react';
+import { ContactVaultLogo } from './Logo';
 
 const Navbar = () => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark w-100 fixed-top shadow-sm p-3 mb-5 rounded"
-      style={{ backgroundColor: '#1A202C' }}>
+      style={{ backgroundColor: '#1A202C', height: '80px' }}>
       <div className="container">
-        <Link className="navbar-brand text-white fs-4 h2" to="/">
-          Contact
-          <Text
-            as={'span'}
-            bgGradient="to-r"
-            gradientFrom="cyan.400"
-            gradientTo="blue.500"
-            bgClip={'text'}
-            className="fs-2 fw-semibold">
-            Vault
-          </Text>
+        <Link
+          className="navbar-brand text-white fs-4 h2 d-flex align-items-center"
+          to="/">
+          <div style={{ width: '80px', height: '70px' }}>
+            <ContactVaultLogo />
+          </div>
         </Link>
         <button
           className="navbar-toggler"
