@@ -8,7 +8,6 @@ import {
   FaSearch
 } from 'react-icons/fa';
 import { Element } from 'react-scroll';
-
 import { motion } from 'framer-motion';
 
 const fadeInVariant = {

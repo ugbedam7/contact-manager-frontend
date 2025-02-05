@@ -1,6 +1,5 @@
 import { Container, Form, Button } from 'react-bootstrap';
 import { Element } from 'react-scroll';
-
 import { motion } from 'framer-motion';
 
 const fadeInVariant = {

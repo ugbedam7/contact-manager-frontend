@@ -1,6 +1,5 @@
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { FaUsers, FaSync, FaTag, FaClock } from 'react-icons/fa';
-
 import { motion } from 'framer-motion';
 
 const fadeInVariant = {
