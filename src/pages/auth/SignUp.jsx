@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BASE_URL } from '../../App';
+import SmallContactVaultLogo from '../../components/common/Logo';
 
 export const SignUp = () => {
   const [isLoginActive, setLoginActive] = useState(false);
@@ -77,7 +78,10 @@ export const SignUp = () => {
             onMouseEnter={() => setLoginActive(true)}
             onMouseLeave={() => setLoginActive(false)}>
             <form onSubmit={register}>
-              <div className="d-flex flex-row align-items-center justify-content-center">
+              <div className="d-flex flex-column align-items-center justify-content-center text-center pb-3">
+                <div className="d-flex align-content-center justify-content-center">
+                  <SmallContactVaultLogo />
+                </div>
                 <h1 className="text-3xl font-semibold">Create Account</h1>
               </div>
 
