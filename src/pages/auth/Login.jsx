@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { useAuth } from '../../components/AuthContext';
 import { BASE_URL } from '../../App';
+import '../../../Auth.css';
 
 const Login = () => {
   const [data, setData] = useState({
@@ -47,11 +48,11 @@ const Login = () => {
 
   return (
     <div
-      className="container-fluid"
-      style={{ paddingTop: 60, background: '#f5f5f5' }}>
-      <div className="container h-custom">
+      className="container-fluid  auth-container"
+      style={{ paddingTop: '90px' }}>
+      <div className="container h-custom ">
         <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col-md-8 col-lg-6 col-xl-4 login log-in">
+          <div className="col-md-8 col-lg-6 col-xl-4 login log-in auth-card">
             <form onSubmit={handleLogin}>
               <div className="d-flex flex-row align-content-center justify-content-center">
                 <h1 className="text-3xl font-semibold ">Login</h1>

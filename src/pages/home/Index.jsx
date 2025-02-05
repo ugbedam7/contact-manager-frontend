@@ -10,7 +10,7 @@ const Home = () => {
     <div>
       <header
         className="hero-section text-center text-white py-5"
-        style={{ backgroundColor: '#3F3F46' }}>
+        style={{ backgroundColor: '#2d333e' }}>
         <div className="container hero">
           <h1 className="display-4 fw-bold">Contact Manager Pro</h1>
           <p className="lead fs-5">
