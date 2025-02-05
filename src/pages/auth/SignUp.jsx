@@ -67,7 +67,7 @@ export const SignUp = () => {
   };
 
   return (
-    <div className="container-fluid auth-container" style={{ paddingTop: 40 }}>
+    <div className="container-fluid auth-container" style={{ paddingTop: 70 }}>
       <div className="container-fluid h-custom">
         <div className="d-flex justify-content-center align-items-center h-100">
           <div
