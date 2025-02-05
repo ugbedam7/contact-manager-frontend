@@ -47,7 +47,7 @@ const Navbar = () => {
                 to="about"
                 smooth={true}
                 duration={1000}
-                offset={-70}
+                offset={-100}
                 style={{ cursor: 'pointer' }}
                 className="nav-link active text-white ">
                 About
@@ -59,7 +59,7 @@ const Navbar = () => {
                 to="contact"
                 smooth={true}
                 duration={1000}
-                offset={-70}
+                offset={-100}
                 style={{ cursor: 'pointer' }}
                 className="nav-link active text-white">
                 Contact Us
@@ -71,7 +71,7 @@ const Navbar = () => {
                 to="features"
                 smooth={true}
                 duration={1000}
-                offset={-70}
+                offset={-100}
                 style={{ cursor: 'pointer' }}
                 className="nav-link text-white">
                 Features
