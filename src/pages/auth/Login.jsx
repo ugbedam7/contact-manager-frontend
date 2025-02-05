@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { useAuth } from '../../components/AuthContext';
 import { BASE_URL } from '../../App';
 import '../../../Auth.css';
+import { SmallContactVaultLogo } from '../../components/common/Logo';
 
 const Login = () => {
   const [data, setData] = useState({
@@ -54,7 +55,11 @@ const Login = () => {
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-md-8 col-lg-6 col-xl-4 login log-in auth-card">
             <form onSubmit={handleLogin}>
-              <div className="d-flex flex-row align-content-center justify-content-center">
+              <div className="d-flex flex-column align-content-center justify-content-center text-center pb-3">
+                <div className="d-flex align-content-center justify-content-center">
+                  <SmallContactVaultLogo />
+                </div>
+
                 <h1 className="text-3xl font-semibold ">Login</h1>
               </div>
 
