@@ -6,7 +6,7 @@ import { Text } from '@chakra-ui/react';
 const Navbar = () => {
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-dark position-fixed w-100"
+      className="navbar navbar-expand-lg navbar-dark w-100 fixed-top shadow-sm p-3 mb-5 rounded"
       style={{ backgroundColor: '#1A202C' }}>
       <div className="container">
         <Link className="navbar-brand text-white fs-4 h2" to="/">

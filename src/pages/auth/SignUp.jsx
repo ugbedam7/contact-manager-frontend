@@ -67,11 +67,11 @@ export const SignUp = () => {
   };
 
   return (
-    <div className="container fluid" style={{ paddingTop: 40 }}>
+    <div className="container-fluid auth-container" style={{ paddingTop: 40 }}>
       <div className="container-fluid h-custom">
         <div className="d-flex justify-content-center align-items-center h-100">
           <div
-            className={`col-md-8 col-lg-6 col-xl-4 signup sign-in ${
+            className={`col-md-8 col-lg-6 col-xl-4 signup sign-in auth-card ${
               isLoginActive ? 'active' : ''
             }`}
             onMouseEnter={() => setLoginActive(true)}
