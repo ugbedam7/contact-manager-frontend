@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import { Nav } from 'react-bootstrap';
-import { ContactVaultLogo } from './Logo';
+import { ContactVaultLogo } from '../svgs/Logo';
 
 const Navbar = () => {
   return (
