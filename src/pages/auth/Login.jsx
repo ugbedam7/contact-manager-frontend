@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { useAuth } from '../../components/AuthContext';
 import { BASE_URL } from '../../App';
 import '../../../Auth.css';
-import { SmallContactVaultLogo } from '../../components/common/Logo';
+import { SmallContactVaultLogo } from '../../components/svgs/Logo';
 
 const Login = () => {
   const [data, setData] = useState({

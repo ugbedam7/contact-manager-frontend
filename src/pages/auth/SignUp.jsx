@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BASE_URL } from '../../App';
-import SmallContactVaultLogo from '../../components/common/Logo';
+import SmallContactVaultLogo from '../../components/svgs/Logo';
 
 export const SignUp = () => {
   const [isLoginActive, setLoginActive] = useState(false);
