@@ -1,4 +1,10 @@
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import {
+  BrowserRouter,
+  matchPath,
+  Route,
+  Routes,
+  useLocation
+} from 'react-router-dom';
 import './App.css';
 import Navbar from './components/common/Navbar';
 import Home from './pages/home/Index';
@@ -8,9 +14,10 @@ import Dashboard from './components/common/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './components/AuthContext';
 import { ToastContainer } from 'react-toastify';
+import ContactDetails from './components/contacts/ContactDetails';
 
-// export const BASE_URL = 'http://localhost:5000';
-export const BASE_URL = 'https://contact-app-be-t5jz.onrender.com';
+export const BASE_URL = 'http://localhost:5000';
+// export const BASE_URL = 'https://contact-app-be-t5jz.onrender.com';
 
 function App() {
   return (
@@ -25,18 +32,31 @@ function App() {
 function MainLayout() {
   const location = useLocation();
 
-  // Hide Navbar when on the dashboard route
-  const hideNavbarRoutes = ['/dashboard'];
-  const showNavbar = !hideNavbarRoutes.includes(location.pathname);
+  // Define paths where Navbar should be hidden
+  // const hideNavbarRoutes = ['/dashboard', '/dashboard/:id'];
+  // const showNavbar = !hideNavbarRoutes.includes(location.pathname);
+
+  const hideNavbar =
+    location.pathname === '/dashboard' ||
+    matchPath('/dashboard/:id', location.pathname);
 
   return (
     <div>
-      {showNavbar && <Navbar />}
+      {/* {showNavbar && <Navbar />} */}
+      {!hideNavbar && <Navbar />}
       <ToastContainer position="top-right" autoClose={1000} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route
+          path="/dashboard/:id"
+          element={
+            <ProtectedRoute>
+              <ContactDetails />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/dashboard"
           element={
@@ -46,7 +66,6 @@ function MainLayout() {
           }
         />
       </Routes>
-      <ToastContainer />
     </div>
   );
 }
