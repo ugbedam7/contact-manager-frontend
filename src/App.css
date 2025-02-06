@@ -175,3 +175,45 @@ input {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 3px;
 }
+
+.social-icon {
+  line-height: 48px;
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  border: 1px solid #333333;
+  background: #1a202c;
+  text-decoration: none;
+  font-size: 20px;
+  margin-right: 6px;
+  color: #e4e3e1;
+  position: relative;
+}
+
+.social-icon:hover {
+  background-color: #000;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.footer nav .nav-title {
+  display: block;
+  color: #b9b6b1;
+  margin-bottom: 0.5rem;
+  font-family: opensans-bold, arial, sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+.footer nav a {
+  display: block;
+  color: #b9b6b1;
+  text-decoration: none;
+}
