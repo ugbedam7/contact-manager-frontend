@@ -217,3 +217,7 @@ input {
   color: #b9b6b1;
   text-decoration: none;
 }
+
+.view {
+  margin-bottom: 3px;
+}

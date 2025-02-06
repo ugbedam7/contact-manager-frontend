@@ -5,9 +5,10 @@ import { useColorModeValue } from '@/components/ui/color-mode';
 import EditContact from './EditContactModal';
 import { toast } from 'react-toastify';
 import { BASE_URL } from '../../App';
+import { Link } from 'react-router-dom';
 
 const ContactCard = ({ contact, setContacts }) => {
-  const handleDeleteContact = async () => {
+  const handleDeleteContact = async (e) => {
     try {
       const res = await fetch(`${BASE_URL}/api/contacts/${contact._id}`, {
         method: 'DELETE',
@@ -41,21 +42,26 @@ const ContactCard = ({ contact, setContacts }) => {
       borderRadius={'md'}>
       <Card.Header>
         <Flex gap={4}>
-          <Flex flex={'1'} gap={'4'} alignItems={'start'}>
-            <Avatar src={contact.imgUrl} />
-            <Box>
-              <Heading fontWeight="semibold" textStyle="xl">
-                {contact.name}
-              </Heading>
-              <Text marginBottom={'0'}>{contact.email}</Text>
-              <Text>{contact.phone}</Text>
-              <Text color="fg.muted" textStyle="md">
-                {contact.address}
-              </Text>
-            </Box>
-          </Flex>
+          <Link
+            to={`/dashboard/${contact._id}`}
+            style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Flex flex={'1'} gap={'4'} alignItems={'start'}>
+              <Avatar src={contact.imgUrl} />
+              <Box>
+                <Heading fontWeight="semibold" textStyle="xl">
+                  {contact.name}
+                </Heading>
+                <Text marginBottom={'0'}>{contact.email}</Text>
+                <Text>{contact.phone}</Text>
+                <Text color="fg.muted" textStyle="md">
+                  {contact.address}
+                </Text>
+              </Box>
+            </Flex>
+          </Link>
           <Flex>
             <EditContact contact={contact} setContacts={setContacts} />
+
             <Icon
               fontSize="21px"
               color={'tomato'}
