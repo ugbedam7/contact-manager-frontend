@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Field } from '@/components/ui/field';
-import { Button } from '@/components/ui/button';
-import { Flex, Icon, Input, Stack, Textarea } from '@chakra-ui/react';
+import { Field } from "@/components/ui/field";
+import { Button } from "@/components/ui/button";
+import { Flex, Icon, Input, Stack, Textarea } from "@chakra-ui/react";
 
 import {
   DialogActionTrigger,
@@ -12,14 +12,14 @@ import {
   DialogHeader,
   DialogRoot,
   DialogTitle,
-  DialogTrigger
-} from '@/components/ui/dialog';
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
-import { useColorModeValue } from '@/components/ui/color-mode';
-import { BiEditAlt } from 'react-icons/bi';
-import { useState } from 'react';
-import { toast } from 'react-toastify';
-import { BASE_URL } from '../../App';
+import { useColorModeValue } from "@/components/ui/color-mode";
+import { BiEditAlt } from "react-icons/bi";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { BASE_URL } from "../../App";
 
 const EditContact = ({ contact, setContacts }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +28,8 @@ const EditContact = ({ contact, setContacts }) => {
     name: contact.name,
     email: contact.email,
     phone: contact.phone,
-    address: contact.address
+    address: contact.address,
+    xhandle: contact.xhandle,
   });
   const handleEditContact = async (e) => {
     e.preventDefault();
@@ -36,12 +37,12 @@ const EditContact = ({ contact, setContacts }) => {
 
     try {
       const res = await fetch(`${BASE_URL}/api/contacts/${contact._id}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
         },
-        body: JSON.stringify(inputs)
+        body: JSON.stringify(inputs),
       });
 
       const result = await res.json();
@@ -70,27 +71,29 @@ const EditContact = ({ contact, setContacts }) => {
         <DialogTrigger asChild>
           <Icon
             fontSize="21px"
-            color={useColorModeValue('blue.800', 'cyan.200')}
-            marginRight={'7px'}
-            cursor={'pointer'}>
+            color={useColorModeValue("blue.800", "cyan.200")}
+            marginRight={"7px"}
+            cursor={"pointer"}
+          >
             <BiEditAlt />
           </Icon>
         </DialogTrigger>
         {/* Ensure each dialog's trigger and form elements are unique to avoid collisions */}
         <form onSubmit={handleEditContact} id={`edit-id-${contact._id}`}>
           <DialogContent
-            bg={useColorModeValue('gray.100', 'gray.700')}
-            color={useColorModeValue('gray.900', 'white')}>
+            bg={useColorModeValue("gray.100", "gray.700")}
+            color={useColorModeValue("gray.900", "white")}
+          >
             <DialogHeader>
               <DialogTitle>Edit Contact</DialogTitle>
             </DialogHeader>
             <DialogBody pb="4">
               <Stack gap="4">
-                <Flex alignItems={'center'} gap={4}>
+                <Flex alignItems={"center"} gap={4}>
                   <Field label="Full Name">
                     <Input
-                      bg={useColorModeValue('white', 'gray.800')}
-                      color={useColorModeValue('gray.900', 'white')}
+                      bg={useColorModeValue("white", "gray.800")}
+                      color={useColorModeValue("gray.900", "white")}
                       value={inputs.name}
                       onChange={(e) =>
                         setInputs((prev) => ({ ...prev, name: e.target.value }))
@@ -99,13 +102,13 @@ const EditContact = ({ contact, setContacts }) => {
                   </Field>
                   <Field label="Email">
                     <Input
-                      bg={useColorModeValue('white', 'gray.800')}
-                      color={useColorModeValue('gray.900', 'white')}
+                      bg={useColorModeValue("white", "gray.800")}
+                      color={useColorModeValue("gray.900", "white")}
                       value={inputs.email}
                       onChange={(e) =>
                         setInputs((prev) => ({
                           ...prev,
-                          email: e.target.value
+                          email: e.target.value,
                         }))
                       }
                     />
@@ -113,13 +116,27 @@ const EditContact = ({ contact, setContacts }) => {
 
                   <Field label="Phone">
                     <Input
-                      bg={useColorModeValue('white', 'gray.800')}
-                      color={useColorModeValue('gray.900', 'white')}
+                      bg={useColorModeValue("white", "gray.800")}
+                      color={useColorModeValue("gray.900", "white")}
                       value={inputs.phone}
                       onChange={(e) =>
                         setInputs((prev) => ({
                           ...prev,
-                          phone: e.target.value
+                          phone: e.target.value,
+                        }))
+                      }
+                    />
+                  </Field>
+
+                  <Field label="Xhandle">
+                    <Input
+                      bg={useColorModeValue("white", "gray.800")}
+                      color={useColorModeValue("gray.900", "white")}
+                      value={inputs.xhandle}
+                      onChange={(e) =>
+                        setInputs((prev) => ({
+                          ...prev,
+                          xhandle: e.target.value,
                         }))
                       }
                     />
@@ -127,13 +144,13 @@ const EditContact = ({ contact, setContacts }) => {
                 </Flex>
                 <Field label="Address">
                   <Textarea
-                    resize={'none'}
-                    overflowY={'hidden'}
+                    resize={"none"}
+                    overflowY={"hidden"}
                     value={inputs.address}
                     onChange={(e) =>
                       setInputs((prev) => ({
                         ...prev,
-                        address: e.target.value
+                        address: e.target.value,
                       }))
                     }
                   />
@@ -149,9 +166,10 @@ const EditContact = ({ contact, setContacts }) => {
                 type="submit"
                 form={`edit-id-${contact._id}`}
                 isDisabled={isLoading}
-                borderRadius={5}>
+                borderRadius={5}
+              >
                 {isLoading ? (
-                  <Flex justifyContent={'center'}>
+                  <Flex justifyContent={"center"}>
                     <img
                       src="/spinner.gif"
                       alt="spinner"
@@ -160,7 +178,7 @@ const EditContact = ({ contact, setContacts }) => {
                     />
                   </Flex>
                 ) : (
-                  'Update'
+                  "Update"
                 )}
               </Button>
             </DialogFooter>

@@ -7,8 +7,11 @@ import {
   Card,
   Text,
   Button,
+  Icon,
 } from "@chakra-ui/react";
 import { useColorModeValue } from "@/components/ui/color-mode";
+import EditContact from "./EditContactModal";
+import { BiTrash } from "react-icons/bi";
 
 const ContactDetailItem = ({ label, value }) => (
   <Flex justify="space-between" w="full">
@@ -22,6 +25,8 @@ const ContactDetailItem = ({ label, value }) => (
 );
 
 const ContactView = ({ contact }) => {
+  const handleDeleteContact = async () => {};
+
   if (!contact) {
     return (
       <Flex justify="center" align="center" h="100vh">
@@ -67,8 +72,15 @@ const ContactView = ({ contact }) => {
                   </Text>
                 </Box>
               </Flex>
-              <Button colorPalette="red" size="xs" borderRadius={4}>
-                Delete
+              <Button variant={"outline"} size="md" mr={4} borderRadius={4}>
+                <Icon
+                  fontSize="21px"
+                  color={"tomato"}
+                  cursor={"pointer"}
+                  onClick={handleDeleteContact}
+                >
+                  <BiTrash />
+                </Icon>
               </Button>
             </Flex>
           </Card.Body>
@@ -77,7 +89,7 @@ const ContactView = ({ contact }) => {
         <Flex
           borderRadius={5}
           align={"center"}
-          justify={"space-between"}
+          justify={"space-around"}
           mt={6}
           p={2}
           bg={useColorModeValue("gray.200", "gray.700")}
@@ -86,14 +98,8 @@ const ContactView = ({ contact }) => {
           <Box ml={4} fontSize="lg" fontWeight="semibold">
             Contact Details
           </Box>
-          <Button
-            bg="#329FF3"
-            color={"white"}
-            size="xs"
-            borderRadius={4}
-            mr={4}
-          >
-            Update
+          <Button variant={"outline"} size="sm" pr={"0"} borderRadius={4}>
+            <EditContact contact={contact} />
           </Button>
         </Flex>
 

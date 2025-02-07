@@ -141,7 +141,7 @@ const CreateContactModal = ({ setContacts }) => {
                   />
                 </Field>
 
-                <Field label="X-handle">
+                <Field label="Xhandle">
                   <Input
                     bg={useColorModeValue("white", "gray.800")}
                     color={useColorModeValue("gray.900", "white")}
