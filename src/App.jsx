@@ -3,21 +3,21 @@ import {
   matchPath,
   Route,
   Routes,
-  useLocation
-} from 'react-router-dom';
-import './App.css';
-import Navbar from './components/common/Navbar';
-import Home from './pages/home/Index';
-import { SignUp } from './pages/auth/SignUp';
-import Login from './pages/auth/Login';
-import Dashboard from './components/common/Dashboard';
-import ProtectedRoute from './components/ProtectedRoute';
-import { AuthProvider } from './components/AuthContext';
-import { ToastContainer } from 'react-toastify';
-import ContactDetails from './components/contacts/ContactDetails';
+  useLocation,
+} from "react-router-dom";
+import "./App.css";
+import Navbar from "./components/common/Navbar";
+import Home from "./pages/home/Index";
+import { SignUp } from "./pages/auth/SignUp";
+import Login from "./pages/auth/Login";
+import Dashboard from "./components/common/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./components/AuthContext";
+import { ToastContainer } from "react-toastify";
+import ContactDetails from "./components/contacts/ContactDetails";
 
 // export const BASE_URL = 'http://localhost:5000';
-export const BASE_URL = 'https://contact-app-be-t5jz.onrender.com';
+export const BASE_URL = "https://contact-app-be-t5jz.onrender.com";
 
 function App() {
   return (
@@ -37,8 +37,8 @@ function MainLayout() {
   // const showNavbar = !hideNavbarRoutes.includes(location.pathname);
 
   const hideNavbar =
-    location.pathname === '/dashboard' ||
-    matchPath('/dashboard/:id', location.pathname);
+    location.pathname === "/dashboard" ||
+    matchPath("/dashboard/:id", location.pathname);
 
   return (
     <div>
