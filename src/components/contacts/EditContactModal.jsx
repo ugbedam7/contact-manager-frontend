@@ -31,6 +31,7 @@ const EditContact = ({ contact, setContacts }) => {
     address: contact.address,
     xhandle: contact.xhandle,
   });
+
   const handleEditContact = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -65,6 +66,7 @@ const EditContact = ({ contact, setContacts }) => {
       setIsLoading(false);
     }
   };
+
   return (
     <>
       <DialogRoot lazyMount open={open} onOpenChange={(e) => setOpen(e.open)}>

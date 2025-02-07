@@ -67,7 +67,7 @@ const CreateContactModal = ({ setContacts }) => {
       }
 
       setContacts((prevContacts) => [...prevContacts, result.contact]);
-      setInputs({ name: "", email: "", address: "", phone: "" });
+      setInputs({ name: "", email: "", address: "", phone: "", xhandle: "" });
       setSelectedFile(null);
       imgRef.current.value = null;
       toast.success(result.message);

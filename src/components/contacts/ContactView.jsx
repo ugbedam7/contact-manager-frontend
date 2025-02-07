@@ -27,15 +27,6 @@ const ContactDetailItem = ({ label, value }) => (
 const ContactView = ({ contact }) => {
   const handleDeleteContact = async () => {};
 
-  if (!contact) {
-    return (
-      <Flex justify="center" align="center" h="100vh">
-        <Text fontSize="xl" color="red.500">
-          No Contact Found!
-        </Text>
-      </Flex>
-    );
-  }
   return (
     <Stack minH={"100vh"}>
       <Container maxW={{ base: "100%", md: "600px" }}>

@@ -1,20 +1,20 @@
-import { Box, Card, Flex, Heading, Text, Icon } from '@chakra-ui/react';
-import { BiTrash } from 'react-icons/bi';
-import { Avatar } from '@/components/ui/avatar';
-import { useColorModeValue } from '@/components/ui/color-mode';
-import EditContact from './EditContactModal';
-import { toast } from 'react-toastify';
-import { BASE_URL } from '../../App';
-import { Link } from 'react-router-dom';
+import { Box, Card, Flex, Heading, Text, Icon } from "@chakra-ui/react";
+import { BiTrash } from "react-icons/bi";
+import { Avatar } from "@/components/ui/avatar";
+import { useColorModeValue } from "@/components/ui/color-mode";
+import EditContact from "./EditContactModal";
+import { toast } from "react-toastify";
+import { BASE_URL } from "../../App";
+import { Link } from "react-router-dom";
 
 const ContactCard = ({ contact, setContacts }) => {
-  const handleDeleteContact = async (e) => {
+  const handleDeleteContact = async () => {
     try {
       const res = await fetch(`${BASE_URL}/api/contacts/${contact._id}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
-        }
+          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
+        },
       });
 
       const result = await res.json();
@@ -34,24 +34,26 @@ const ContactCard = ({ contact, setContacts }) => {
 
   return (
     <Card.Root
-      bg={useColorModeValue('#fff', 'gray.700')}
-      transform={'scale(1)'}
-      transition={'all 0.3s'}
-      _hover={{ transform: 'scale(1.02)' }}
-      boxShadow={'md'}
-      borderRadius={'md'}>
+      bg={useColorModeValue("#fff", "gray.700")}
+      transform={"scale(1)"}
+      transition={"all 0.3s"}
+      _hover={{ transform: "scale(1.02)" }}
+      boxShadow={"md"}
+      borderRadius={"md"}
+    >
       <Card.Header>
         <Flex gap={4}>
           <Link
             to={`/dashboard/${contact._id}`}
-            style={{ textDecoration: 'none', color: 'inherit' }}>
-            <Flex flex={'1'} gap={'4'} alignItems={'start'}>
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Flex flex={"1"} gap={"4"} alignItems={"start"}>
               <Avatar src={contact.imgUrl} />
               <Box>
                 <Heading fontWeight="semibold" textStyle="xl">
                   {contact.name}
                 </Heading>
-                <Text marginBottom={'0'}>{contact.email}</Text>
+                <Text marginBottom={"0"}>{contact.email}</Text>
                 <Text>{contact.phone}</Text>
                 <Text color="fg.muted" textStyle="md">
                   {contact.address}
@@ -64,9 +66,10 @@ const ContactCard = ({ contact, setContacts }) => {
 
             <Icon
               fontSize="21px"
-              color={'tomato'}
-              cursor={'pointer'}
-              onClick={handleDeleteContact}>
+              color={"tomato"}
+              cursor={"pointer"}
+              onClick={handleDeleteContact}
+            >
               <BiTrash />
             </Icon>
           </Flex>
