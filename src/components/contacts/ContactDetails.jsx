@@ -1,12 +1,4 @@
-import {
-  Container,
-  Box,
-  Stack,
-  Flex,
-  Text,
-  Heading,
-  Spinner
-} from '@chakra-ui/react';
+import { Container, Box, Stack, Flex, Text, Spinner } from '@chakra-ui/react';
 import { ColorModeButton } from '@/components/ui/color-mode';
 import { useColorModeValue } from '@/components/ui/color-mode';
 import { FiLogOut } from 'react-icons/fi';
@@ -22,7 +14,8 @@ import ContactView from './ContactView';
 const ContactDetails = () => {
   const { id } = useParams();
   const [contact, setContact] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
   const { logout } = useAuth();
   const navigate = useNavigate();
 
@@ -32,8 +25,13 @@ const ContactDetails = () => {
   };
 
   useEffect(() => {
+    setUser(sessionStorage.getItem('user'));
+  }, []);
+
+  useEffect(() => {
     const fetchContact = async () => {
       try {
+        setLoading(true);
         const res = await fetch(`${BASE_URL}/api/contacts/${id}`, {
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
@@ -56,8 +54,6 @@ const ContactDetails = () => {
 
     fetchContact();
   }, [id]);
-
-  if (loading) return <Spinner size="xl" />;
 
   return (
     <Stack bg={{ base: 'white', _dark: '#1A202C' }} minH={'100vh'}>
@@ -85,12 +81,12 @@ const ContactDetails = () => {
                   fontSize="md"
                   fontWeight="semibold"
                   color={useColorModeValue('gray.900', 'white')}>
-                  {sessionStorage.getItem('user')}
+                  {user}
                 </Box>
               </Flex>
 
-              <Button variant="outline">
-                <FiLogOut onClick={handleLogout} />
+              <Button variant="outline" onClick={handleLogout}>
+                <FiLogOut />
               </Button>
             </Flex>
           </Flex>
@@ -114,7 +110,18 @@ const ContactDetails = () => {
             Contact Details
           </Text>
         </Text>
-        <ContactView contact={contact} />
+
+        {loading ? (
+          <Flex justifyContent={'center'}>
+            <img src="/spinner.gif" alt="spinner" height={25} width={25} />
+          </Flex>
+        ) : contact ? (
+          <ContactView contact={contact} />
+        ) : (
+          <Text textAlign="center" color="red.500">
+            Contact not found.
+          </Text>
+        )}
       </Container>
     </Stack>
   );

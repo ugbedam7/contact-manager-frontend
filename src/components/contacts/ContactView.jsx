@@ -27,12 +27,12 @@ const ContactView = ({ contact }) => {
 
               <Flex flexDirection={'column'}>
                 <Text marginBottom={'0'} fontWeight="semibold" textStyle="xl">
-                  Victor Dallas
+                  {contact.name}
                 </Text>
-                <Text marginBottom={'0'} color="fg.muted" textStyle="sm">
-                  Email: natefoss@yahoo.com
+                <Text marginBottom={'0'} color="fg.muted" textStyle="md">
+                  Email: {contact.email}
                 </Text>
-                <Text color="fg.muted" textStyle="sm">
+                <Text color="fg.muted" textStyle="md">
                   Twitter: @natefoss
                 </Text>
               </Flex>
@@ -77,8 +77,8 @@ const ContactView = ({ contact }) => {
           </Box>
           <Box>
             <Text className="view">{contact.email}</Text>
-            <Text className="view">Damian</Text>
-            <Text className="view">Oguche</Text>
+            <Text className="view">{contact.name.split(' ')[0]}</Text>
+            <Text className="view">{contact.name.split(' ')[1]}</Text>
             <Text className="view">{contact.phone}</Text>
             <Text className="view">{contact.address}</Text>
           </Box>
