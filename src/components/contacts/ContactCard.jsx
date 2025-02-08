@@ -61,7 +61,7 @@ const ContactCard = ({ contact, setContacts }) => {
               </Box>
             </Flex>
           </Link>
-          <Flex>
+          <Flex gap={1}>
             <EditContact contact={contact} setContacts={setContacts} />
 
             <Icon

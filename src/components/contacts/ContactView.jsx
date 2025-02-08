@@ -76,7 +76,7 @@ const ContactView = ({ contact }) => {
         <Flex
           borderRadius={5}
           align={"center"}
-          justify={"space-around"}
+          justify={"space-between"}
           mt={6}
           p={2}
           bg={cardBgColor}
