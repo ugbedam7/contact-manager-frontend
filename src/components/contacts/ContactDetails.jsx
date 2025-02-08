@@ -65,7 +65,7 @@ const ContactDetails = () => {
         <Box px={4} my={4} borderRadius={5} bg={bgColor}>
           <Flex h="12" alignItems={"center"} justifyContent={"space-between"}>
             <Flex gap={3} alignItems={"center"}>
-              <Button onClick={() => navigate("/dasboard")} variant="outline">
+              <Button onClick={() => navigate("/dashboard")} variant="outline">
                 <FiArrowLeft />
               </Button>
 
@@ -79,7 +79,7 @@ const ContactDetails = () => {
               display={{ base: "block", sm: "flex" }}
             >
               <Box position="relative">
-                <Button aria-label="Notifications" variant="ghost">
+                <Button variant="ghost">
                   <FiBell />
                 </Button>
                 <Badge
