@@ -3,7 +3,7 @@ const CompanyDetails = () => {
     <div className="container footer">
       <div className="row">
         <div className="col-sm-6 col-md-3 mb-4">
-          <nav aria-label="Company links">
+          <nav>
             <span className="nav-title">Company</span>
             <a href="#">About Us</a>
             <a href="#">Success Stories</a>
@@ -12,16 +12,16 @@ const CompanyDetails = () => {
           </nav>
         </div>
         <div class="col-sm-6 col-md-3 mb-4">
-          <nav aria-label="Solutions links">
+          <nav>
             <span class="nav-title">Solutions</span>
             <a href="#">Contact Pro</a>
             <a href="#">Contact Basic</a>
-            <a href="#">Sub-accounts</a>
+            <a href="#">Sub-Accounts</a>
             <a href="#">Contact Omni</a>
           </nav>
         </div>
         <div class="col-sm-6 col-md-3 mb-4">
-          <nav aria-label="Trust Centre links">
+          <nav>
             <span class="nav-title">Trust centre</span>
             <a href="#">Accessibility</a>
             <a href="#">Data Protection</a>
@@ -30,9 +30,9 @@ const CompanyDetails = () => {
           </nav>
         </div>
         <div class="col-sm-6 col-md-3">
-          <nav aria-label="Contact links">
+          <nav>
             <span class="nav-title">Contact</span>
-            <a href="">Contact</a>
+            <a href="#">Contact</a>
             <a href="#">Support</a>
             <a href="#">Services</a>
             <a href="#">Report Security Issues</a>
