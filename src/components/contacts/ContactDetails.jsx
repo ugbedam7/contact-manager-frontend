@@ -1,7 +1,7 @@
-import { Container, Box, Stack, Flex, Text, Spinner } from "@chakra-ui/react";
+import { Container, Box, Stack, Flex, Text, Badge } from "@chakra-ui/react";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { useColorModeValue } from "@/components/ui/color-mode";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogOut, FiArrowLeft, FiBell } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -16,8 +16,12 @@ const ContactDetails = () => {
   const [contact, setContact] = useState(null);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
-  const { logout } = useAuth();
+  const { logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+
+  // Centralized color and background values
+  const textColor = useColorModeValue("gray.900", "white");
+  const bgColor = useColorModeValue("gray.200", "gray.700");
 
   const handleLogout = () => {
     logout();
@@ -58,33 +62,54 @@ const ContactDetails = () => {
   return (
     <Stack bg={{ base: "white", _dark: "#1A202C" }} minH={"100vh"}>
       <Container maxW={"900px"}>
-        <Box
-          px={4}
-          my={4}
-          borderRadius={5}
-          bg={useColorModeValue("gray.200", "gray.700")}
-        >
+        <Box px={4} my={4} borderRadius={5} bg={bgColor}>
           <Flex h="12" alignItems={"center"} justifyContent={"space-between"}>
             <Flex gap={3} alignItems={"center"}>
+              <Button onClick={() => navigate("/dasboard")} variant="outline">
+                <FiArrowLeft />
+              </Button>
+
               <ColorModeButton />
             </Flex>
 
             <Flex
               alignItems={"center"}
               justifyContent={"center"}
-              gap={3}
+              gap={2}
               display={{ base: "block", sm: "flex" }}
             >
+              <Box position="relative">
+                <Button aria-label="Notifications" variant="ghost">
+                  <FiBell />
+                </Button>
+                <Badge
+                  position="absolute"
+                  top="1"
+                  right="3"
+                  color={textColor}
+                  borderRadius="full"
+                  fontSize="0.7em"
+                  bg={"red.500"}
+                  size={"xs"}
+                >
+                  3
+                </Badge>
+              </Box>
+
+              {isAuthenticated && (
+                <Badge
+                  bg={isAuthenticated ? "green.500" : "gray.400"}
+                  borderRadius="full"
+                  size={"xs"}
+                  p={2}
+                ></Badge>
+              )}
+
               <Flex
-                gap={3}
                 alignItems={"center"}
                 display={{ base: "none", md: "block" }}
               >
-                <Box
-                  fontSize="md"
-                  fontWeight="semibold"
-                  color={useColorModeValue("gray.900", "white")}
-                >
+                <Box fontSize="md" fontWeight="semibold" color={textColor}>
                   {user}
                 </Box>
               </Flex>
@@ -132,8 +157,8 @@ const ContactDetails = () => {
             mx="auto"
             p={2}
             fontSize="lg"
-            bg={useColorModeValue("gray.200", "gray.700")}
-            color={useColorModeValue("gray.900", "white")}
+            bg={bgColor}
+            color={textColor}
           >
             No Contact Found!
           </Text>

@@ -27,14 +27,14 @@ const ContactDetailItem = ({ label, value }) => (
 const ContactView = ({ contact }) => {
   const handleDeleteContact = async () => {};
 
+  // Centralized color and background values
+  const textColor = useColorModeValue("gray.900", "white");
+  const cardBgColor = useColorModeValue("gray.200", "gray.700");
+
   return (
     <Stack minH={"100vh"}>
       <Container maxW={{ base: "100%", md: "600px" }}>
-        <Card.Root
-          bg={useColorModeValue("gray.200", "gray.700")}
-          px={4}
-          borderRadius={5}
-        >
+        <Card.Root bg={cardBgColor} px={4} borderRadius={5}>
           <Card.Body>
             <Flex
               align="start"
@@ -51,11 +51,7 @@ const ContactView = ({ contact }) => {
                   <Text className="view" fontWeight="bold" textStyle="xl">
                     {contact.name}
                   </Text>
-                  <Text
-                    color={useColorModeValue("gray.900", "white")}
-                    textStyle="lg"
-                    marginBottom={"0"}
-                  >
+                  <Text color={textColor} textStyle="lg" marginBottom={"0"}>
                     {contact.email}
                   </Text>
                   <Text color="#329FF3" textStyle="lg">
@@ -83,8 +79,8 @@ const ContactView = ({ contact }) => {
           justify={"space-around"}
           mt={6}
           p={2}
-          bg={useColorModeValue("gray.200", "gray.700")}
-          color={useColorModeValue("gray.900", "white")}
+          bg={cardBgColor}
+          color={textColor}
         >
           <Box ml={4} fontSize="lg" fontWeight="semibold">
             Contact Details
@@ -99,8 +95,8 @@ const ContactView = ({ contact }) => {
           mt={2}
           height={"full"}
           borderRadius={5}
-          bg={useColorModeValue("gray.200", "gray.700")}
-          color={useColorModeValue("gray.900", "white")}
+          bg={cardBgColor}
+          color={textColor}
         >
           <Stack spacing={3}>
             <ContactDetailItem
