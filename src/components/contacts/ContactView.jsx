@@ -12,6 +12,9 @@ import {
 import { useColorModeValue } from "@/components/ui/color-mode";
 import EditContact from "./EditContactModal";
 import { BiTrash } from "react-icons/bi";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../App";
 
 const ContactDetailItem = ({ label, value }) => (
   <Flex justify="space-between" w="full">
@@ -25,7 +28,29 @@ const ContactDetailItem = ({ label, value }) => (
 );
 
 const ContactView = ({ contact, setContact }) => {
-  const handleDeleteContact = async () => {};
+  const navigate = useNavigate();
+
+  const handleDeleteContact = async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/api/contacts/${contact._id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
+        },
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.error);
+      }
+
+      toast.success(result.message);
+      navigate("/dashboard");
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
 
   // Centralized color and background values
   const textColor = useColorModeValue("gray.900", "white");
