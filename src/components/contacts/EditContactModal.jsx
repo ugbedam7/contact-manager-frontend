@@ -21,7 +21,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../../App";
 
-const EditContact = ({ contact, setContacts }) => {
+const EditContact = ({ contact, setContact, setContacts }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [inputs, setInputs] = useState({
@@ -60,11 +60,19 @@ const EditContact = ({ contact, setContacts }) => {
       setOpen(false);
       // This ensures the UI reflects the changes without
       // requiring a full page reload.
-      setContacts((prevContacts) =>
-        prevContacts.map((c) =>
-          c._id === contact._id ? result.updatedContact : c
-        )
-      );
+      // Only update the contacts state if setContacts is provided
+      if (setContacts) {
+        setContacts((prevContacts) =>
+          prevContacts.map((c) =>
+            c._id === contact._id ? result.updatedContact : c
+          )
+        );
+      }
+
+      // Update the contact state in ContactDetails
+      if (setContact) {
+        setContact(result.updatedContact);
+      }
     } catch (err) {
       toast.error(err.message);
     } finally {

@@ -147,7 +147,7 @@ const ContactDetails = () => {
             <img src="/spinner.gif" alt="spinner" height={25} width={25} />
           </Flex>
         ) : contact ? (
-          <ContactView contact={contact} />
+          <ContactView contact={contact} setContact={setContact} />
         ) : (
           <Text
             textAlign="center"

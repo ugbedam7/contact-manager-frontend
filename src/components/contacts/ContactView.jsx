@@ -24,7 +24,7 @@ const ContactDetailItem = ({ label, value }) => (
   </Flex>
 );
 
-const ContactView = ({ contact }) => {
+const ContactView = ({ contact, setContact }) => {
   const handleDeleteContact = async () => {};
 
   // Centralized color and background values
@@ -86,7 +86,7 @@ const ContactView = ({ contact }) => {
             Contact Details
           </Box>
           <Button variant={"outline"} size="sm" pr={"0"} borderRadius={4}>
-            <EditContact contact={contact} />
+            <EditContact contact={contact} setContact={setContact} />
           </Button>
         </Flex>
 
