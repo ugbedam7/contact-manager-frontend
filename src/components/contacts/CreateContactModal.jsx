@@ -2,7 +2,7 @@
 
 import { Field } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
-import { Flex, Input, Stack, Textarea } from "@chakra-ui/react";
+import { Flex, Grid, Input, Stack, Textarea } from "@chakra-ui/react";
 import { BiAddToQueue } from "react-icons/bi";
 import { CiImageOn } from "react-icons/ci";
 import {
@@ -34,6 +34,11 @@ const CreateContactModal = ({ setContacts }) => {
 
   const [selectedFile, setSelectedFile] = useState(null);
   const imgRef = useRef(null);
+
+  // Centralized color and background values
+  const bgColor = useColorModeValue("white", "gray.800");
+  const textColor = useColorModeValue("gray.900", "white");
+  const dialogBgColor = useColorModeValue("gray.100", "gray.700");
 
   const handleCreateUser = async (e) => {
     e.preventDefault();
@@ -96,8 +101,8 @@ const CreateContactModal = ({ setContacts }) => {
         </DialogTrigger>
         <DialogContent
           as="form"
-          bg={useColorModeValue("gray.100", "gray.700")}
-          color={useColorModeValue("gray.900", "white")}
+          bg={dialogBgColor}
+          color={textColor}
           onSubmit={handleCreateUser}
         >
           <DialogHeader>
@@ -105,11 +110,11 @@ const CreateContactModal = ({ setContacts }) => {
           </DialogHeader>
           <DialogBody pb="4">
             <Stack gap="4">
-              <Flex alignItems={"center"} gap={4}>
+              <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
                 <Field label="Full Name">
                   <Input
-                    bg={useColorModeValue("white", "gray.800")}
-                    color={useColorModeValue("gray.900", "white")}
+                    bg={bgColor}
+                    color={textColor}
                     placeholder="John Doe"
                     value={inputs.name}
                     onChange={(e) =>
@@ -119,8 +124,8 @@ const CreateContactModal = ({ setContacts }) => {
                 </Field>
                 <Field label="Email">
                   <Input
-                    bg={useColorModeValue("white", "gray.800")}
-                    color={useColorModeValue("gray.900", "white")}
+                    bg={bgColor}
+                    color={textColor}
                     placeholder="test@example.com"
                     value={inputs.email}
                     onChange={(e) =>
@@ -131,8 +136,8 @@ const CreateContactModal = ({ setContacts }) => {
 
                 <Field label="Phone">
                   <Input
-                    bg={useColorModeValue("white", "gray.800")}
-                    color={useColorModeValue("gray.900", "white")}
+                    bg={bgColor}
+                    color={textColor}
                     placeholder="222555000"
                     value={inputs.phone}
                     onChange={(e) =>
@@ -143,8 +148,8 @@ const CreateContactModal = ({ setContacts }) => {
 
                 <Field label="Xhandle">
                   <Input
-                    bg={useColorModeValue("white", "gray.800")}
-                    color={useColorModeValue("gray.900", "white")}
+                    bg={bgColor}
+                    color={textColor}
                     placeholder="@ugbedam"
                     value={inputs.xhandle}
                     onChange={(e) =>
@@ -152,7 +157,7 @@ const CreateContactModal = ({ setContacts }) => {
                     }
                   />
                 </Field>
-              </Flex>
+              </Grid>
               <Field label="Address">
                 <Textarea
                   resize={"none"}

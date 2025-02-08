@@ -2,7 +2,7 @@
 
 import { Field } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
-import { Flex, Icon, Input, Stack, Textarea } from "@chakra-ui/react";
+import { Flex, Grid, Icon, Input, Stack, Textarea } from "@chakra-ui/react";
 
 import {
   DialogActionTrigger,
@@ -31,6 +31,11 @@ const EditContact = ({ contact, setContacts }) => {
     address: contact.address,
     xhandle: contact.xhandle,
   });
+
+  // Centralized color and background values
+  const bgColor = useColorModeValue("white", "gray.800");
+  const textColor = useColorModeValue("gray.900", "white");
+  const dialogBgColor = useColorModeValue("gray.100", "gray.700");
 
   const handleEditContact = async (e) => {
     e.preventDefault();
@@ -82,78 +87,62 @@ const EditContact = ({ contact, setContacts }) => {
         </DialogTrigger>
         {/* Ensure each dialog's trigger and form elements are unique to avoid collisions */}
         <form onSubmit={handleEditContact} id={`edit-id-${contact._id}`}>
-          <DialogContent
-            bg={useColorModeValue("gray.100", "gray.700")}
-            color={useColorModeValue("gray.900", "white")}
-          >
+          <DialogContent bg={dialogBgColor} color={textColor}>
             <DialogHeader>
               <DialogTitle>Edit Contact</DialogTitle>
             </DialogHeader>
             <DialogBody pb="4">
               <Stack gap="4">
-                <Flex alignItems={"center"} gap={4}>
+                <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
                   <Field label="Full Name">
                     <Input
-                      bg={useColorModeValue("white", "gray.800")}
-                      color={useColorModeValue("gray.900", "white")}
+                      bg={bgColor}
+                      color={textColor}
                       value={inputs.name}
                       onChange={(e) =>
-                        setInputs((prev) => ({ ...prev, name: e.target.value }))
+                        setInputs({ ...inputs, name: e.target.value })
                       }
                     />
                   </Field>
                   <Field label="Email">
                     <Input
-                      bg={useColorModeValue("white", "gray.800")}
-                      color={useColorModeValue("gray.900", "white")}
+                      bg={bgColor}
+                      color={textColor}
+                      type="email"
                       value={inputs.email}
                       onChange={(e) =>
-                        setInputs((prev) => ({
-                          ...prev,
-                          email: e.target.value,
-                        }))
+                        setInputs({ ...inputs, email: e.target.value })
                       }
                     />
                   </Field>
-
                   <Field label="Phone">
                     <Input
-                      bg={useColorModeValue("white", "gray.800")}
-                      color={useColorModeValue("gray.900", "white")}
+                      bg={bgColor}
+                      color={textColor}
+                      type="tel"
                       value={inputs.phone}
                       onChange={(e) =>
-                        setInputs((prev) => ({
-                          ...prev,
-                          phone: e.target.value,
-                        }))
+                        setInputs({ ...inputs, phone: e.target.value })
                       }
                     />
                   </Field>
-
-                  <Field label="Xhandle">
+                  <Field label="XHandle">
                     <Input
-                      bg={useColorModeValue("white", "gray.800")}
-                      color={useColorModeValue("gray.900", "white")}
+                      bg={bgColor}
+                      color={textColor}
                       value={inputs.xhandle}
                       onChange={(e) =>
-                        setInputs((prev) => ({
-                          ...prev,
-                          xhandle: e.target.value,
-                        }))
+                        setInputs({ ...inputs, xhandle: e.target.value })
                       }
                     />
                   </Field>
-                </Flex>
+                </Grid>
                 <Field label="Address">
                   <Textarea
-                    resize={"none"}
-                    overflowY={"hidden"}
+                    resize="none"
                     value={inputs.address}
                     onChange={(e) =>
-                      setInputs((prev) => ({
-                        ...prev,
-                        address: e.target.value,
-                      }))
+                      setInputs({ ...inputs, address: e.target.value })
                     }
                   />
                 </Field>
