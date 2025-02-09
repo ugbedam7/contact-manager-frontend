@@ -1,11 +1,11 @@
 .auth-container {
-  background: url('/login-bg.jpg') center/cover no-repeat;
+  background: url("/auth-bg.jpg") center/cover no-repeat;
   position: relative;
   height: 100vh;
 }
 
 .auth-container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;

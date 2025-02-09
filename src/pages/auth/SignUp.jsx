@@ -1,13 +1,20 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { BASE_URL } from '../../App';
-import SmallContactVaultLogo from '../../components/svgs/Logo';
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BASE_URL } from "../../App";
+import SmallContactVaultLogo from "../../components/svgs/Logo";
 
 export const SignUp = () => {
   const [isLoginActive, setLoginActive] = useState(false);
   const navigate = useNavigate();
+  const [bgLoaded, setBgLoaded] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = "/auth-bg.jpg";
+    img.onload = () => setBgLoaded(true);
+  }, []);
 
   /**
    * In the approach below, the component's state remains in sync with the
@@ -16,9 +23,9 @@ export const SignUp = () => {
    */
 
   const [data, setData] = useState({
-    fullname: '',
-    email: '',
-    password: ''
+    fullname: "",
+    email: "",
+    password: "",
   });
 
   const handleChange = (event) => {
@@ -32,16 +39,16 @@ export const SignUp = () => {
     const userData = {
       fullname: data.fullname,
       email: data.email,
-      password: data.password
+      password: data.password,
     };
 
     try {
       const res = await fetch(`${BASE_URL}/api/auth/register`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
       });
 
       const result = await res.json();
@@ -50,7 +57,7 @@ export const SignUp = () => {
         toast.success(result.message);
         // Delay navigation to allow the toast to show
         setTimeout(() => {
-          navigate('/login');
+          navigate("/login");
         }, 3000);
       } else {
         toast.error(result.error);
@@ -73,10 +80,11 @@ export const SignUp = () => {
         <div className="d-flex justify-content-center align-items-center h-100">
           <div
             className={`col-md-8 col-lg-6 col-xl-4 signup sign-in auth-card ${
-              isLoginActive ? 'active' : ''
+              isLoginActive ? "active" : ""
             }`}
             onMouseEnter={() => setLoginActive(true)}
-            onMouseLeave={() => setLoginActive(false)}>
+            onMouseLeave={() => setLoginActive(false)}
+          >
             <form onSubmit={register}>
               <div className="d-flex flex-column align-items-center justify-content-center text-center pb-3">
                 <div className="d-flex align-content-center justify-content-center">
@@ -143,15 +151,17 @@ export const SignUp = () => {
               <div className="text-center text-lg-start mt-4 pt-2">
                 <button
                   type="submit"
-                  className="btn text-white w-100 signup-btn">
+                  className="btn text-white w-100 signup-btn"
+                >
                   Sign Up
                 </button>
                 <p className="small fw-bold mt-2 pt-1 mb-0">
                   Already Have An Account?
                   <Link
-                    className={`${isLoginActive ? 'text-white' : 'text-dark'}`}
-                    to="/login">
-                    {' '}
+                    className={`${isLoginActive ? "text-white" : "text-dark"}`}
+                    to="/login"
+                  >
+                    {" "}
                     Login
                   </Link>
                 </p>

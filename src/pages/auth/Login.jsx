@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
-import { useAuth } from '../../components/AuthContext';
-import { BASE_URL } from '../../App';
-import '../../../Auth.css';
-import { SmallContactVaultLogo } from '../../components/svgs/Logo';
+import { useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { useAuth } from "../../components/AuthContext";
+import { BASE_URL } from "../../App";
+import "../../../Auth.css";
+import { SmallContactVaultLogo } from "../../components/svgs/Logo";
 
 const Login = () => {
   const [data, setData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
 
   const navigate = useNavigate();
@@ -35,12 +35,12 @@ const Login = () => {
       if (success) {
         login(accessToken, user);
         toast.success(message);
-        setTimeout(() => navigate('/dashboard'), 2000);
+        setTimeout(() => navigate("/dashboard"), 2000);
       }
     } catch (err) {
       // Check if the error response exists and extract the error message
       if (err.response && err.response.data) {
-        toast.error(err.response.data.error || 'An error occurred');
+        toast.error(err.response.data.error || "An error occurred");
       } else {
         toast.error(err.message);
       }
@@ -50,7 +50,8 @@ const Login = () => {
   return (
     <div
       className="container-fluid  auth-container"
-      style={{ paddingTop: '90px' }}>
+      style={{ paddingTop: "90px" }}
+    >
       <div className="container h-custom ">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-md-8 col-lg-6 col-xl-4 login log-in auth-card">
@@ -106,11 +107,12 @@ const Login = () => {
               <div className="text-center text-lg-start mt-4 pt2">
                 <button
                   className="btn text-white w-100 text-white rounded-3 login-btn"
-                  type="submit">
+                  type="submit"
+                >
                   Login
                 </button>
                 <p className="small fw-bold mt-2 pt-1">
-                  Don't Have an Account yet?{' '}
+                  Don't Have an Account yet?{" "}
                   <Link className="link-secondary" to="/signup">
                     Sign Up
                   </Link>
