@@ -13,7 +13,7 @@ import {
   DialogHeader,
   DialogRoot,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from "@/components/ui/dialog";
 
 import { useColorModeValue } from "@/components/ui/color-mode";
@@ -25,11 +25,11 @@ const CreateContactModal = ({ setContacts }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [inputs, setInputs] = useState({
-    name: "",
+    fullname: "",
     email: "",
     address: "",
     phone: "",
-    xhandle: "",
+    xhandle: ""
   });
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -46,7 +46,7 @@ const CreateContactModal = ({ setContacts }) => {
 
     const formData = new FormData();
 
-    formData.append("name", inputs.name);
+    formData.append("fullname", inputs.fullname);
     formData.append("email", inputs.email);
     formData.append("phone", inputs.phone);
     formData.append("address", inputs.address);
@@ -60,9 +60,9 @@ const CreateContactModal = ({ setContacts }) => {
       const res = await fetch(`${BASE_URL}/api/contacts`, {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
+          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`
         },
-        body: formData,
+        body: formData
       });
 
       const result = await res.json();
@@ -71,8 +71,15 @@ const CreateContactModal = ({ setContacts }) => {
         throw new Error(result.error);
       }
 
-      setContacts((prevContacts) => [...prevContacts, result.contact]);
-      setInputs({ name: "", email: "", address: "", phone: "", xhandle: "" });
+      setContacts((prevContacts) => [...prevContacts, result.newContact]);
+
+      setInputs({
+        fullname: "",
+        email: "",
+        address: "",
+        phone: "",
+        xhandle: ""
+      });
       setSelectedFile(null);
       imgRef.current.value = null;
       toast.success(result.message);
@@ -111,14 +118,14 @@ const CreateContactModal = ({ setContacts }) => {
           <DialogBody pb="4">
             <Stack gap="4">
               <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
-                <Field label="Full Name">
+                <Field label="FullName">
                   <Input
                     bg={bgColor}
                     color={textColor}
                     placeholder="John Doe"
-                    value={inputs.name}
+                    value={inputs.fullname}
                     onChange={(e) =>
-                      setInputs({ ...inputs, name: e.target.value })
+                      setInputs({ ...inputs, fullname: e.target.value })
                     }
                   />
                 </Field>

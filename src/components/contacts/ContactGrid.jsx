@@ -15,6 +15,7 @@ const ContactGrid = ({ contacts = [], setContacts, searchQuery }) => {
         const data = await res.json();
 
         if (!res.ok) throw new Error(data.error);
+
         setContacts(data);
       } catch (err) {
         console.log(err.message);
@@ -27,10 +28,10 @@ const ContactGrid = ({ contacts = [], setContacts, searchQuery }) => {
   }, []);
 
   // If searchQuery is empty (""), .includes("") will always return true,
-  // meaning all contacts will be displayed.If searchQuery contains text,
+  // meaning all contacts will be displayed. If searchQuery contains text,
   // only matching contacts will be shown.
   const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(searchQuery.toLowerCase())
+    contact.fullname.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   if (isLoading) {
@@ -59,7 +60,7 @@ const ContactGrid = ({ contacts = [], setContacts, searchQuery }) => {
       templateColumns={{
         base: "1fr",
         md: "repeat(2, 1fr)",
-        lg: "repeat(3, 1fr)",
+        lg: "repeat(3, 1fr)"
       }}
       gap={4}
     >

@@ -13,8 +13,8 @@ const ContactCard = ({ contact, setContacts }) => {
       const res = await fetch(`${BASE_URL}/api/contacts/${contact._id}`, {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
-        },
+          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`
+        }
       });
 
       const result = await res.json();
@@ -51,7 +51,7 @@ const ContactCard = ({ contact, setContacts }) => {
               <Avatar src={contact.imgUrl} />
               <Box>
                 <Heading fontWeight="semibold" textStyle="xl">
-                  {contact.name}
+                  {contact.fullname}
                 </Heading>
                 <Text marginBottom={"0"}>{contact.email}</Text>
                 <Text>{contact.phone}</Text>

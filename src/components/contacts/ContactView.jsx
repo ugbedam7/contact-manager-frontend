@@ -7,7 +7,7 @@ import {
   Card,
   Text,
   Button,
-  Icon,
+  Icon
 } from "@chakra-ui/react";
 import { useColorModeValue } from "@/components/ui/color-mode";
 import EditContact from "./EditContactModal";
@@ -35,8 +35,8 @@ const ContactView = ({ contact, setContact }) => {
       const res = await fetch(`${BASE_URL}/api/contacts/${contact._id}`, {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
-        },
+          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`
+        }
       });
 
       const result = await res.json();
@@ -68,7 +68,7 @@ const ContactView = ({ contact, setContact }) => {
             >
               <Flex align="start" gap={6} flex={1}>
                 <Avatar.Root size={"2xl"} shape="rounded">
-                  <Avatar.Fallback name={contact.name} />
+                  <Avatar.Fallback name={contact.fullname} />
                   <Avatar.Image src={contact.imgUrl} />
                 </Avatar.Root>
 
@@ -126,11 +126,11 @@ const ContactView = ({ contact, setContact }) => {
           <Stack spacing={3}>
             <ContactDetailItem
               label="First Name"
-              value={contact.name.split(" ")[0]}
+              value={contact.fullname.split(" ")[0]}
             />
             <ContactDetailItem
               label="Last Name"
-              value={contact.name.split(" ")[1] || ""}
+              value={contact.fullname.split(" ")[1] || ""}
             />
             <ContactDetailItem label="Email" value={contact.email} />
             <ContactDetailItem label="Mobile" value={contact.phone} />
