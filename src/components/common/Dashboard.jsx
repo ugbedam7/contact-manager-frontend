@@ -13,15 +13,20 @@ import CreateContactModal from "../contacts/CreateContactModal";
 import ContactGrid from "../contacts/ContactGrid";
 import { FiLogOut } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [contacts, setContacts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [user, setUser] = useState("");
   const { logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setUser(sessionStorage.getItem("user"));
+  }, []);
 
   // Centralized color and background values
   const bgColor = useColorModeValue("white", "gray.800");
@@ -79,7 +84,7 @@ const Dashboard = () => {
                 display={{ base: "none", md: "block" }}
               >
                 <Box fontSize="md" fontWeight="semibold" color={textColor}>
-                  {sessionStorage.getItem("user")}
+                  {user}
                 </Box>
               </Flex>
 
