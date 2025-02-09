@@ -1,7 +1,8 @@
-import { Grid, Text, Flex } from '@chakra-ui/react';
-import ContactCard from './ContactCard';
-import { useEffect, useState } from 'react';
-import { BASE_URL } from '../../App';
+import { Grid, Text, Flex } from "@chakra-ui/react";
+import ContactCard from "./ContactCard";
+import { useEffect, useState } from "react";
+import { BASE_URL } from "../../App";
+import { ToastContainer } from "react-toastify";
 
 const ContactGrid = ({ contacts = [], setContacts, searchQuery }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +35,7 @@ const ContactGrid = ({ contacts = [], setContacts, searchQuery }) => {
 
   if (isLoading) {
     return (
-      <Flex justifyContent={'center'}>
+      <Flex justifyContent={"center"}>
         <img src="/spinner.gif" alt="spinner" height={50} width={50} />
       </Flex>
     );
@@ -43,7 +44,7 @@ const ContactGrid = ({ contacts = [], setContacts, searchQuery }) => {
   if (!isLoading && filteredContacts.length === 0) {
     return (
       <Flex justifyContent="center">
-        <Text fontSize="xl" color={'white'}>
+        <Text fontSize="xl" color={"white"}>
           <Text as="span" fontSize="2xl" fontWeight="bold" mr={2}>
             Sorry!
           </Text>
@@ -56,11 +57,12 @@ const ContactGrid = ({ contacts = [], setContacts, searchQuery }) => {
   return (
     <Grid
       templateColumns={{
-        base: '1fr',
-        md: 'repeat(2, 1fr)',
-        lg: 'repeat(3, 1fr)'
+        base: "1fr",
+        md: "repeat(2, 1fr)",
+        lg: "repeat(3, 1fr)",
       }}
-      gap={4}>
+      gap={4}
+    >
       {filteredContacts.map((contact) => (
         <ContactCard
           key={contact.id}
@@ -68,6 +70,7 @@ const ContactGrid = ({ contacts = [], setContacts, searchQuery }) => {
           setContacts={setContacts}
         />
       ))}
+      <ToastContainer />
     </Grid>
   );
 };
