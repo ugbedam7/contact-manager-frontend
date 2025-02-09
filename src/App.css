@@ -218,3 +218,11 @@ input {
 .view {
   margin-bottom: 2px;
 }
+
+.hover-scale {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.08);
+}
