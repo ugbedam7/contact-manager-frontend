@@ -72,12 +72,7 @@ const ContactDetails = () => {
               <ColorModeButton />
             </Flex>
 
-            <Flex
-              alignItems={"center"}
-              justifyContent={"center"}
-              gap={2}
-              display={{ base: "block", sm: "flex" }}
-            >
+            <Flex alignItems={"center"} justifyContent={"center"} gap={2}>
               <Box position="relative">
                 <Button variant="ghost">
                   <FiBell />
@@ -105,10 +100,7 @@ const ContactDetails = () => {
                 ></Badge>
               )}
 
-              <Flex
-                alignItems={"center"}
-                display={{ base: "none", md: "block" }}
-              >
+              <Flex alignItems={"center"}>
                 <Box fontSize="md" fontWeight="semibold" color={textColor}>
                   {user}
                 </Box>
