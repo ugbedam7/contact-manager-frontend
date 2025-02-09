@@ -12,7 +12,7 @@ import {
 import { useColorModeValue } from "@/components/ui/color-mode";
 import EditContact from "./EditContactModal";
 import { BiTrash } from "react-icons/bi";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../App";
 
@@ -138,6 +138,7 @@ const ContactView = ({ contact, setContact }) => {
           </Stack>
         </Box>
       </Container>
+      <ToastContainer />
     </Stack>
   );
 };
