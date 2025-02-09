@@ -71,6 +71,7 @@ const Dashboard = () => {
             >
               {isAuthenticated && (
                 <Badge
+                  display={{ base: "none", md: "block" }}
                   bg={isAuthenticated ? "green.500" : "gray.700"}
                   borderRadius="full"
                   size={"xs"}
