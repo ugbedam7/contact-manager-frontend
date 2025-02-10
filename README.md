@@ -1,13 +1,15 @@
 # Contact Manager App Documentation
 
-## App Description
+## App Description(How It Works)
 
 - The Contact Manager App is a user-friendly platform that allows
   individuals to store and manage contact details efficiently.
-- Users can create, view, edit, and delete their own contacts, while an  
-  admin has full control over all user accounts.
-- Users can search the list by name.
-- Email notification is sent after a contact is added to the App.
+- Role-Based Access Control (RBAC)
+  - Users can create, view, edit, and delete their own contacts, while an  
+    admin has full control over all user accounts.
+- Users can search the contacts list by name.
+- Email Notifications:
+  - When a user adds a new contact, they receive an email notification.
 - The app ensures data privacy by restricting modifications to personal
   entries only.
 
