@@ -1,4 +1,4 @@
-# Contact Manager App Documentation
+# Contact Manager App Frontend
 
 ## App Description(How It Works)
 
