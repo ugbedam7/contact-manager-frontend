@@ -226,3 +226,14 @@ input {
 .hover-scale:hover {
   transform: scale(1.08);
 }
+
+.contact-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+}
+
+.contact-image:hover {
+  opacity: 1;
+}

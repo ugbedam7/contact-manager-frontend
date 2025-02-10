@@ -15,6 +15,8 @@ import { BiTrash } from "react-icons/bi";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../App";
+import { useRef, useState } from "react";
+import { MdEdit } from "react-icons/md";
 
 const ContactDetailItem = ({ label, value }) => (
   <Flex justify="space-between" w="full">
@@ -29,7 +31,70 @@ const ContactDetailItem = ({ label, value }) => (
 
 const ContactView = ({ contact, setContact }) => {
   const navigate = useNavigate();
+  const contactImgRef = useRef(null);
+  const [contactImg, setContactImg] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
+  const handleImgChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const allowedTypes = ["image/png", "image/jpeg", "image/jpg", "image/webp"];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error("Image format not allowed.");
+      return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      toast.error("Image size too large");
+      return;
+    }
+
+    // Load the selected file and set its base64-encoded
+    // string in state
+    const reader = new FileReader();
+    reader.onload = () => {
+      setContactImg(reader.result);
+    };
+    reader.readAsDataURL(file);
+
+    setSelectedFile(file);
+  };
+
+  // Update Image
+  const updateContactImage = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    if (!selectedFile) return;
+
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+
+    try {
+      const res = await fetch(`${BASE_URL}/api/contacts/${contact._id}`, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`
+        },
+        body: formData
+      });
+
+      const result = await res.json();
+
+      contact = result.contact;
+      if (!res.ok) throw new Error(result.error);
+
+      toast.success(result.message);
+    } catch (err) {
+      toast.error(err.message);
+    } finally {
+      setIsLoading(false);
+      setSelectedFile(null);
+    }
+  };
+
+  // Delete Contact
   const handleDeleteContact = async () => {
     try {
       const res = await fetch(`${BASE_URL}/api/contacts/${contact._id}`, {
@@ -60,21 +125,40 @@ const ContactView = ({ contact, setContact }) => {
     <Stack minH={"100vh"}>
       <Container maxW={{ base: "100%", md: "600px" }}>
         <Card.Root bg={cardBgColor} px={4} borderRadius={5}>
-          <Card.Body>
+          <Card.Body as="form" onSubmit={updateContactImage}>
             <Flex
               align="start"
               justify="space-between"
               direction={{ base: "column", sm: "row" }}
             >
               <Flex align="start" gap={6} flex={1}>
-                <Avatar.Root size={"2xl"} shape="rounded">
-                  <Avatar.Fallback name={contact.fullname} />
-                  <Avatar.Image src={contact.imgUrl} />
-                </Avatar.Root>
+                <div className="position-relative p-1">
+                  <Avatar.Root size={"2xl"} shape="rounded">
+                    <Avatar.Fallback name={contact.fullname} />
+                    <Avatar.Image src={contactImg || contact.imgUrl} />
+                  </Avatar.Root>
+
+                  <input
+                    type="file"
+                    hidden
+                    name="image"
+                    accept="image/*"
+                    ref={contactImgRef}
+                    onChange={handleImgChange}
+                  />
+
+                  <div className="contact-image bg-secondary rounded-circle">
+                    <MdEdit
+                      cursor={"pointer"}
+                      size={20}
+                      onClick={() => contactImgRef.current.click()}
+                    />
+                  </div>
+                </div>
 
                 <Box>
                   <Text className="view" fontWeight="bold" textStyle="xl">
-                    {contact.name}
+                    {contact.fullname}
                   </Text>
                   <Text color={textColor} textStyle="lg" marginBottom={"0"}>
                     {contact.email}
@@ -84,16 +168,40 @@ const ContactView = ({ contact, setContact }) => {
                   </Text>
                 </Box>
               </Flex>
-              <Button variant={"outline"} size="md" mr={4} borderRadius={4}>
-                <Icon
-                  fontSize="21px"
-                  color={"tomato"}
-                  cursor={"pointer"}
-                  onClick={handleDeleteContact}
+              {!selectedFile && (
+                <Button variant={"outline"} size="md" mr={4} borderRadius={4}>
+                  <Icon
+                    fontSize="21px"
+                    color={"tomato"}
+                    cursor={"pointer"}
+                    onClick={handleDeleteContact}
+                  >
+                    <BiTrash />
+                  </Icon>
+                </Button>
+              )}
+
+              {selectedFile && (
+                <Button
+                  size={"sm"}
+                  type="submit"
+                  bg={"cyan.400"}
+                  borderRadius={4}
                 >
-                  <BiTrash />
-                </Icon>
-              </Button>
+                  {isLoading ? (
+                    <Flex justifyContent={"center"}>
+                      <img
+                        src="/spinner.gif"
+                        alt="spinner"
+                        height={25}
+                        width={25}
+                      />
+                    </Flex>
+                  ) : (
+                    "Update"
+                  )}
+                </Button>
+              )}
             </Flex>
           </Card.Body>
         </Card.Root>

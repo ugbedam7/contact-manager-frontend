@@ -12,7 +12,7 @@ import {
   DialogHeader,
   DialogRoot,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from "@/components/ui/dialog";
 
 import { useColorModeValue } from "@/components/ui/color-mode";
@@ -25,11 +25,11 @@ const EditContact = ({ contact, setContact, setContacts }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [inputs, setInputs] = useState({
-    name: contact.name,
+    fullname: contact.fullname,
     email: contact.email,
     phone: contact.phone,
     address: contact.address,
-    xhandle: contact.xhandle,
+    xhandle: contact.xhandle
   });
 
   // Centralized color and background values
@@ -43,12 +43,12 @@ const EditContact = ({ contact, setContact, setContacts }) => {
 
     try {
       const res = await fetch(`${BASE_URL}/api/contacts/${contact._id}`, {
-        method: "PATCH",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
+          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`
         },
-        body: JSON.stringify(inputs),
+        body: JSON.stringify(inputs)
       });
 
       const result = await res.json();
@@ -106,9 +106,9 @@ const EditContact = ({ contact, setContact, setContacts }) => {
                     <Input
                       bg={bgColor}
                       color={textColor}
-                      value={inputs.name}
+                      value={inputs.fullname}
                       onChange={(e) =>
-                        setInputs({ ...inputs, name: e.target.value })
+                        setInputs({ ...inputs, fullname: e.target.value })
                       }
                     />
                   </Field>
