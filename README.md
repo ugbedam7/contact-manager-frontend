@@ -2,12 +2,20 @@
 
 ## App Description
 
-The Contact Manager App is a user-friendly platform that allows individuals to store and manage contact details efficiently. Users can create, view, edit, and delete their own contacts, while an admin has full control over all user accounts. The app ensures data privacy by restricting modifications to personal entries only.
+- The Contact Manager App is a user-friendly platform that allows
+  individuals to store and manage contact details efficiently.
+- Users can create, view, edit, and delete their own contacts, while an  
+  admin has full control over all user accounts.
+- Users can search the list by name.
+- Email notification is sent after a contact is added to the App.
+- The app ensures data privacy by restricting modifications to personal
+  entries only.
 
 ## Page Explanations
 
 - Landing Page: Features login and signup options for user authentication.
-- Dashboard: Displays a list of saved contacts with search and filter options.
+- Dashboard: Displays a list of saved contacts with search and filter
+  options.
 - Contact Detail Page: Shows full details of a selected contact.
 - Contact Management: Users can add, edit, and delete their own contacts.
 
