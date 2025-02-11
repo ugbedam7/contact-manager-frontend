@@ -87,7 +87,6 @@ const EditContact = ({ contact, setContact, setContacts }) => {
           <Icon
             fontSize="21px"
             color={useColorModeValue("blue.800", "cyan.200")}
-            mr={"7px"}
             cursor={"pointer"}
           >
             <BiEditAlt />

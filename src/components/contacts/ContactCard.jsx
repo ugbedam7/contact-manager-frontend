@@ -6,6 +6,7 @@ import EditContact from "./EditContactModal";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../../App";
 import { Link } from "react-router-dom";
+import { Tooltip } from "@/components/ui/Tooltip";
 
 const ContactCard = ({ contact, setContacts }) => {
   const handleDeleteContact = async () => {
@@ -40,6 +41,8 @@ const ContactCard = ({ contact, setContacts }) => {
       _hover={{ transform: "scale(1.02)" }}
       boxShadow={"md"}
       borderRadius={"md"}
+      minWidth="280px"
+      maxWidth="100%"
     >
       <Card.Header>
         <Flex gap={4}>
@@ -50,10 +53,27 @@ const ContactCard = ({ contact, setContacts }) => {
             <Flex flex={"1"} gap={"4"} alignItems={"start"}>
               <Avatar src={contact.imgUrl} />
               <Box>
-                <Heading fontWeight="semibold" textStyle="xl">
+                <Heading
+                  fontWeight="semibold"
+                  textStyle="xl"
+                  whiteSpace="nowrap"
+                  overflow="hidden"
+                  textOverflow="ellipsis"
+                  maxWidth="200px"
+                >
                   {contact.fullname}
                 </Heading>
-                <Text marginBottom={"0"}>{contact.email}</Text>
+                <Tooltip label={contact.email} hasArrow>
+                  <Text
+                    marginBottom={"0"}
+                    whiteSpace="nowrap"
+                    overflow="hidden"
+                    textOverflow="ellipsis"
+                    maxWidth="200px"
+                  >
+                    {contact.email}
+                  </Text>
+                </Tooltip>
                 <Text>{contact.phone}</Text>
                 <Text color="fg.muted" textStyle="md">
                   {contact.address}
@@ -61,7 +81,7 @@ const ContactCard = ({ contact, setContacts }) => {
               </Box>
             </Flex>
           </Link>
-          <Flex gap={1}>
+          <Flex gap={1} justifyContent="flex-end" minWidth="fit-content">
             <EditContact contact={contact} setContacts={setContacts} />
 
             <Icon
