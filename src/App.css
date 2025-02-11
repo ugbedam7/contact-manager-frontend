@@ -2,7 +2,6 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Jost", sans-serif;
 }
 
 .hero {
@@ -236,4 +235,11 @@ input {
 
 .contact-image:hover {
   opacity: 1;
+}
+
+.gradient-text {
+  background-image: linear-gradient(to right, #22d3ee, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }

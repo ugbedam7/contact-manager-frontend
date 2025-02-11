@@ -1,20 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import HowItWorks from './HowItWorks';
-import PlatformFeatures from './PlatformFeatures';
-import AboutUs from './AboutUs';
-import ContactUs from './ContactUs';
-import Footer from '../../components/common/Footer';
-import { Stack } from '@chakra-ui/react';
+import React from "react";
+import { Link } from "react-router-dom";
+import HowItWorks from "./HowItWorks";
+import PlatformFeatures from "./PlatformFeatures";
+import AboutUs from "./AboutUs";
+import ContactUs from "./ContactUs";
+import Footer from "../../components/common/Footer";
+import { Stack } from "@chakra-ui/react";
 
 const Home = () => {
   return (
     <Stack>
       <header
         className="hero-section text-center text-white py-5"
-        style={{ backgroundColor: '#2d333e' }}>
+        style={{ backgroundColor: "#2d333e" }}
+      >
         <div className="container hero">
-          <h1 className="display-4 fw-bold">Contact Manager Pro</h1>
+          <h1 className="display-4 fw-bold">
+            Contact <span class="gradient-text">Manager Pro</span>{" "}
+          </h1>
           <p className="lead fs-5">
             Effortless Contact Management for Teams & Individuals
           </p>
@@ -31,10 +34,11 @@ const Home = () => {
               to="/signup"
               className="btn btn-lg"
               style={{
-                backgroundColor: '#1A202C',
-                color: '#fff',
-                marginRight: '10px'
-              }}>
+                backgroundColor: "#1A202C",
+                color: "#fff",
+                marginRight: "10px"
+              }}
+            >
               Get Started
             </Link>
           </div>
