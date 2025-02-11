@@ -6,7 +6,7 @@
   individuals to store and manage contact details efficiently.
 - Role-Based Access Control (RBAC)
   - Users can create, view, edit, and delete their own contacts, while an  
-    admin has full control over all user accounts.
+    admin has full control over all contacts.
 - Users can search the contacts list by name.
 - Email Notifications:
   - When a user adds a new contact, they receive an email notification.
