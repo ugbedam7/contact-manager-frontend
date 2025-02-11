@@ -6,12 +6,14 @@ import {
   Text,
   Input,
   Badge,
+  Icon
 } from "@chakra-ui/react";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { useColorModeValue } from "@/components/ui/color-mode";
 import CreateContactModal from "../contacts/CreateContactModal";
 import ContactGrid from "../contacts/ContactGrid";
 import { FiLogOut } from "react-icons/fi";
+import { FaSearch } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useAuth } from "../AuthContext";
@@ -51,7 +53,7 @@ const Dashboard = () => {
               <ColorModeButton />
               <CreateContactModal setContacts={setContacts} />
             </Flex>
-            <Flex gap={3} alignItems={"center"}>
+            <Flex alignItems={"center"} position={"relative"}>
               <Input
                 bg={bgColor}
                 color={textColor}
@@ -61,6 +63,16 @@ const Dashboard = () => {
                 size="sm"
                 pl={5}
               />
+              {!searchQuery && (
+                <Icon
+                  position={"absolute"}
+                  top={"3"}
+                  right={"3"}
+                  color={textColor}
+                >
+                  <FaSearch size={"20"} />
+                </Icon>
+              )}
             </Flex>
 
             <Flex
