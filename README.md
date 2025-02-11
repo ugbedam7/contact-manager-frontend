@@ -12,6 +12,8 @@
   - When a user adds a new contact, they receive an email notification.
 - The app ensures data privacy by restricting modifications to personal
   entries only.
+- To enhance the user experience, the app includes light and dark mode  
+  functionality, allowing users to switch between themes for better readability and personalization.
 
 ## Page Explanations
 
