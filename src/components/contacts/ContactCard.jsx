@@ -60,9 +60,7 @@ const ContactCard = ({ contact, setContacts, cardMinWidth }) => {
                   textOverflow="ellipsis"
                   maxWidth="200px"
                 >
-                  {contact.firstname}
-                  {""}
-                  {contact.lastname}
+                  {contact.firstname} {contact.lastname}
                 </Heading>
                 <Tooltip content={contact.email} showArrow>
                   <Text
