@@ -31,7 +31,7 @@ const ContactGrid = ({ contacts = [], setContacts, searchQuery }) => {
   // meaning all contacts will be displayed. If searchQuery contains text,
   // only matching contacts will be shown.
   const filteredContacts = contacts.filter((contact) =>
-    contact.fullname.toLowerCase().includes(searchQuery.toLowerCase())
+    contact.firstname.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   if (isLoading) {

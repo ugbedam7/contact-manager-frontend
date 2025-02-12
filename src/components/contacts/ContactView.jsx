@@ -134,7 +134,7 @@ const ContactView = ({ contact, setContact }) => {
               <Flex align="start" gap={6} flex={1}>
                 <div className="position-relative p-1">
                   <Avatar.Root size={"2xl"} shape="rounded">
-                    <Avatar.Fallback name={contact.fullname} />
+                    <Avatar.Fallback name={contact.firstname} />
                     <Avatar.Image src={contactImg || contact.imgUrl} />
                   </Avatar.Root>
 
@@ -158,7 +158,8 @@ const ContactView = ({ contact, setContact }) => {
 
                 <Box>
                   <Text className="view" fontWeight="bold" textStyle="xl">
-                    {contact.fullname}
+                    {contact.firstname}
+                    {""} {contact.lastname}
                   </Text>
                   <Text color={textColor} textStyle="lg" marginBottom={"0"}>
                     {contact.email}
@@ -232,14 +233,8 @@ const ContactView = ({ contact, setContact }) => {
           color={textColor}
         >
           <Stack spacing={3}>
-            <ContactDetailItem
-              label="First Name"
-              value={contact.fullname.split(" ")[0]}
-            />
-            <ContactDetailItem
-              label="Last Name"
-              value={contact.fullname.split(" ")[1] || ""}
-            />
+            <ContactDetailItem label="First Name" value={contact.firstname} />
+            <ContactDetailItem label="Last Name" value={contact.lastname} />
             <ContactDetailItem label="Email" value={contact.email} />
             <ContactDetailItem label="Mobile" value={contact.phone} />
             <ContactDetailItem label="Address" value={contact.address} />

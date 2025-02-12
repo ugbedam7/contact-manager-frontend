@@ -25,7 +25,8 @@ const EditContact = ({ contact, setContact, setContacts }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [inputs, setInputs] = useState({
-    fullname: contact.fullname,
+    firstname: contact.firstname,
+    lastname: contact.lastname,
     email: contact.email,
     phone: contact.phone,
     address: contact.address,
@@ -101,16 +102,28 @@ const EditContact = ({ contact, setContact, setContacts }) => {
             <DialogBody pb="4">
               <Stack gap="4">
                 <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
-                  <Field label="Full Name">
+                  <Field label="Firstname">
                     <Input
                       bg={bgColor}
                       color={textColor}
-                      value={inputs.fullname}
+                      value={inputs.firstname}
                       onChange={(e) =>
-                        setInputs({ ...inputs, fullname: e.target.value })
+                        setInputs({ ...inputs, firstname: e.target.value })
                       }
                     />
                   </Field>
+
+                  <Field label="Lastname">
+                    <Input
+                      bg={bgColor}
+                      color={textColor}
+                      value={inputs.lastname}
+                      onChange={(e) =>
+                        setInputs({ ...inputs, lastname: e.target.value })
+                      }
+                    />
+                  </Field>
+
                   <Field label="Email">
                     <Input
                       bg={bgColor}
