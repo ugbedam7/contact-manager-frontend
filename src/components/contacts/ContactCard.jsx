@@ -6,7 +6,7 @@ import EditContact from "./EditContactModal";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../../App";
 import { Link } from "react-router-dom";
-import { Tooltip } from "@/components/ui/Tooltip";
+import { Tooltip } from "@/components/ui/tooltip";
 
 const ContactCard = ({ contact, setContacts }) => {
   const handleDeleteContact = async () => {
@@ -63,7 +63,7 @@ const ContactCard = ({ contact, setContacts }) => {
                 >
                   {contact.fullname}
                 </Heading>
-                <Tooltip label={contact.email} hasArrow>
+                <Tooltip content={contact.email} showArrow>
                   <Text
                     marginBottom={"0"}
                     whiteSpace="nowrap"
