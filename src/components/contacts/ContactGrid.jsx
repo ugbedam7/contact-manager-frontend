@@ -72,6 +72,7 @@ const ContactGrid = ({ contacts = [], setContacts, searchQuery }) => {
           key={contact.id}
           contact={contact}
           setContacts={setContacts}
+          cardMinWidth={"350px"}
         />
       ))}
       <ToastContainer />
