@@ -12,7 +12,13 @@ const Home = () => {
     <Stack>
       <header
         className="hero-section text-center text-white py-5"
-        style={{ backgroundColor: "#2d333e" }}
+        style={{
+          backgroundImage:
+            "url('/contact1.jpg'), linear-gradient(to right, #2f3a4a, #4a5568)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundBlendMode: "overlay"
+        }}
       >
         <div className="container hero">
           <h1 className="display-4 fw-bold">
