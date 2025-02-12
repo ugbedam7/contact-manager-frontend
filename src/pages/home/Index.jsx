@@ -32,11 +32,14 @@ const Home = () => {
           <div className="mt-4">
             <Link
               to="/signup"
-              className="btn btn-lg"
+              className="btn btn-md"
               style={{
-                backgroundColor: "#1A202C",
+                backgroundImage: "linear-gradient(to right, #22d3ee, #3b82f6)",
                 color: "#fff",
-                marginRight: "10px"
+                padding: "10px 20px",
+                borderRadius: "5px",
+                border: "none",
+                textDecoration: "none"
               }}
             >
               Get Started
