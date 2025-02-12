@@ -59,10 +59,13 @@ const ContactGrid = ({ contacts = [], setContacts, searchQuery }) => {
     <Grid
       templateColumns={{
         base: "1fr",
+        sm: "1fr",
         md: "repeat(2, 1fr)",
-        lg: "repeat(3, 1fr)"
+        lg: "repeat(3, 1fr)",
+        xl: "repeat(3, 1fr)"
       }}
       gap={4}
+      overflow={"hidden"}
     >
       {filteredContacts.map((contact) => (
         <ContactCard

@@ -8,7 +8,7 @@ import { BASE_URL } from "../../App";
 import { Link } from "react-router-dom";
 import { Tooltip } from "@/components/ui/tooltip";
 
-const ContactCard = ({ contact, setContacts }) => {
+const ContactCard = ({ contact, setContacts, cardMinWidth }) => {
   const handleDeleteContact = async () => {
     try {
       const res = await fetch(`${BASE_URL}/api/contacts/${contact._id}`, {
@@ -35,14 +35,13 @@ const ContactCard = ({ contact, setContacts }) => {
 
   return (
     <Card.Root
+      minWidth={cardMinWidth}
       bg={useColorModeValue("#fff", "gray.700")}
       transform={"scale(1)"}
       transition={"all 0.3s"}
       _hover={{ transform: "scale(1.02)" }}
       boxShadow={"md"}
       borderRadius={"md"}
-      minWidth="280px"
-      maxWidth="100%"
     >
       <Card.Header>
         <Flex gap={4}>
