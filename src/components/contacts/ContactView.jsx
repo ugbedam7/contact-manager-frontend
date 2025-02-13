@@ -131,7 +131,7 @@ const ContactView = ({ contact, setContact }) => {
               justify="space-between"
               direction={{ base: "column", sm: "row" }}
             >
-              <Flex align="start" gap={6} flex={1}>
+              <Flex align="start" gap={6} flex={1} conta>
                 <div className="position-relative p-1">
                   <Avatar.Root size={"2xl"} shape="rounded">
                     <Avatar.Fallback name={contact.firstname} />

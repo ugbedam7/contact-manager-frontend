@@ -232,7 +232,7 @@ input {
   opacity: 0;
 }
 
-.contact-image:hover {
+.contact-image-par:hover .contact-image {
   opacity: 1;
 }
 
