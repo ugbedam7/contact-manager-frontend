@@ -15,15 +15,16 @@ import { BiTrash } from "react-icons/bi";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../App";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MdEdit } from "react-icons/md";
+import { Tooltip } from "@/components/ui/tooltip";
 
 const ContactDetailItem = ({ label, value }) => (
   <Flex justify="space-between" w="full">
-    <Text flex={"1"} fontWeight="bold" className="view">
+    <Text flex={"1"} fontWeight="bold" className="contact-view">
       {label}
     </Text>
-    <Text flex={"1"} className="view">
+    <Text flex={"1"} className="contact-view">
       {value}
     </Text>
   </Flex>
@@ -35,6 +36,18 @@ const ContactView = ({ contact, setContact }) => {
   const [contactImg, setContactImg] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [showTooltip, setShowTooltip] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setShowTooltip(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleImgChange = (e) => {
     const file = e.target.files[0];
@@ -161,9 +174,38 @@ const ContactView = ({ contact, setContact }) => {
                     {contact.firstname}
                     {""} {contact.lastname}
                   </Text>
-                  <Text color={textColor} textStyle="lg" marginBottom={"0"}>
-                    {contact.email}
-                  </Text>
+                  {/* <Tooltip content={contact.email} showArrow>
+                    <Text
+                      color={textColor}
+                      textStyle="lg"
+                      marginBottom={"0"}
+                      whiteSpace="nowrap"
+                      overflow="hidden"
+                      textOverflow="ellipsis"
+                      maxWidth="200px"
+                    >
+                      {contact.email}
+                    </Text>
+                  </Tooltip> */}
+                  {showTooltip ? (
+                    <Tooltip content={contact.email} showArrow>
+                      <Text
+                        textStyle="lg"
+                        marginBottom="0"
+                        whiteSpace="nowrap"
+                        overflow="hidden"
+                        textOverflow="ellipsis"
+                        maxWidth="200px"
+                      >
+                        {contact.email}
+                      </Text>
+                    </Tooltip>
+                  ) : (
+                    <Text textStyle="lg" marginBottom="0">
+                      {contact.email}
+                    </Text>
+                  )}
+
                   <Text color="#329FF3" textStyle="lg">
                     {contact.xhandle}
                   </Text>
