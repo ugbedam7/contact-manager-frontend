@@ -31,7 +31,9 @@ const ContactGrid = ({ contacts = [], setContacts, searchQuery }) => {
   // meaning all contacts will be displayed. If searchQuery contains text,
   // only matching contacts will be shown.
   const filteredContacts = contacts.filter((contact) =>
-    contact.firstname.toLowerCase().includes(searchQuery.toLowerCase())
+    `${contact.firstname || ""} ${contact.lastname || ""}`
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase())
   );
 
   if (isLoading) {
@@ -46,7 +48,7 @@ const ContactGrid = ({ contacts = [], setContacts, searchQuery }) => {
     return (
       <Flex justifyContent="center">
         <Text fontSize="xl" color={"white"}>
-          <Text as="span" fontSize="2xl" fontWeight="bold" mr={2}>
+          <Text as="span" fontSize="2xl" fontWeight="semibold" mr={2}>
             Sorry!
           </Text>
           No Contacts Found.
