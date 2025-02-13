@@ -17,7 +17,8 @@ const Home = () => {
             "url('/contact1.jpg'), linear-gradient(to right, #2f3a4a, #4a5568)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundBlendMode: "overlay"
+          backgroundBlendMode: "overlay",
+          backgroundRepeat: "no-repeat"
         }}
       >
         <div className="container hero">
