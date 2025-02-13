@@ -132,7 +132,7 @@ const ContactView = ({ contact, setContact }) => {
               direction={{ base: "column", sm: "row" }}
             >
               <Flex align="start" gap={6} flex={1} conta>
-                <div className="position-relative p-1">
+                <div className="position-relative p-1 contact-image-par">
                   <Avatar.Root size={"2xl"} shape="rounded">
                     <Avatar.Fallback name={contact.firstname} />
                     <Avatar.Image src={contactImg || contact.imgUrl} />
