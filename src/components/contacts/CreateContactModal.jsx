@@ -47,7 +47,9 @@ const CreateContactModal = ({ setContacts }) => {
 
     const formData = new FormData();
 
-    formData.append("fullname", inputs.firstname);
+    console.log(selectedFile);
+
+    formData.append("firstname", inputs.firstname);
     formData.append("lastname", inputs.lastname);
     formData.append("email", inputs.email);
     formData.append("phone", inputs.phone);
@@ -58,6 +60,7 @@ const CreateContactModal = ({ setContacts }) => {
       formData.append("image", selectedFile);
     }
 
+    console.log(formData);
     try {
       const res = await fetch(`${BASE_URL}/api/contacts`, {
         method: "POST",
