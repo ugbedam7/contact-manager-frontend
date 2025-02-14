@@ -1,33 +1,34 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   // Initialize isAuthenticated based on session storage
-  const storedToken = sessionStorage.getItem('authToken');
+  const storedToken = sessionStorage.getItem("authToken");
   const [isAuthenticated, setIsAuthenticated] = useState(!!storedToken);
 
   useEffect(() => {
     // Check authentication from session storage or API
-    const token = sessionStorage.getItem('authToken');
+    const token = sessionStorage.getItem("authToken");
     if (token) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       setIsAuthenticated(true);
     }
   }, [storedToken]);
 
   const login = (token, user) => {
-    sessionStorage.setItem('authToken', token);
-    sessionStorage.setItem('user', user.fullname);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    sessionStorage.setItem("authToken", token);
+    sessionStorage.setItem("user", user.fullname);
+    sessionStorage.setItem("userId", user._id);
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     setIsAuthenticated(true);
   };
 
   const logout = () => {
-    sessionStorage.removeItem('authToken');
-    sessionStorage.removeItem('user');
-    delete axios.defaults.headers.common['Authorization'];
+    sessionStorage.removeItem("authToken");
+    sessionStorage.removeItem("user");
+    delete axios.defaults.headers.common["Authorization"];
     setIsAuthenticated(false);
   };
 
