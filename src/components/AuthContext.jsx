@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = (token, user) => {
     sessionStorage.setItem("authToken", token);
-    sessionStorage.setItem("user", user.fullname);
+    sessionStorage.setItem("user", user.firstname);
     sessionStorage.setItem("userId", user._id);
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     setIsAuthenticated(true);
