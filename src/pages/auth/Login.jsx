@@ -10,7 +10,7 @@ import { SmallContactVaultLogo } from "../../components/svgs/Logo";
 const Login = () => {
   const [data, setData] = useState({
     email: "",
-    password: "",
+    password: ""
   });
 
   const navigate = useNavigate();

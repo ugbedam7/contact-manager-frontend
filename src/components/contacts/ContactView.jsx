@@ -36,7 +36,6 @@ const ContactView = ({ contact, setContact }) => {
   const [contactImg, setContactImg] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const [showTooltip, setShowTooltip] = useState(true);
 
   useEffect(() => {
