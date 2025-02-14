@@ -48,7 +48,7 @@ const CreateContactModal = ({ setContacts }) => {
     const formData = new FormData();
 
     formData.append("fullname", inputs.firstname);
-    formData.append("fullname", inputs.lastname);
+    formData.append("lastname", inputs.lastname);
     formData.append("email", inputs.email);
     formData.append("phone", inputs.phone);
     formData.append("address", inputs.address);
@@ -83,6 +83,7 @@ const CreateContactModal = ({ setContacts }) => {
         phone: "",
         xhandle: ""
       });
+
       setSelectedFile(null);
       imgRef.current.value = null;
       toast.success(result.message);
@@ -125,7 +126,7 @@ const CreateContactModal = ({ setContacts }) => {
                   <Input
                     bg={bgColor}
                     color={textColor}
-                    placeholder="John Doe"
+                    placeholder="John"
                     value={inputs.firstname}
                     onChange={(e) =>
                       setInputs({ ...inputs, firstname: e.target.value })
@@ -136,7 +137,7 @@ const CreateContactModal = ({ setContacts }) => {
                   <Input
                     bg={bgColor}
                     color={textColor}
-                    placeholder="John Doe"
+                    placeholder="Doe"
                     value={inputs.lastname}
                     onChange={(e) =>
                       setInputs({ ...inputs, lastname: e.target.value })
