@@ -38,8 +38,8 @@ const ContactDetails = () => {
         setLoading(true);
         const res = await fetch(`${BASE_URL}/api/contacts/${id}`, {
           headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
-          },
+            Authorization: `Bearer ${sessionStorage.getItem("authToken")}`
+          }
         });
 
         const data = await res.json();
@@ -73,24 +73,6 @@ const ContactDetails = () => {
             </Flex>
 
             <Flex alignItems={"center"} justifyContent={"center"} gap={2}>
-              <Box position="relative">
-                <Button variant="ghost">
-                  <FiBell />
-                </Button>
-                <Badge
-                  position="absolute"
-                  top="1"
-                  right="3"
-                  color={textColor}
-                  borderRadius="full"
-                  fontSize="0.7em"
-                  bg={"red.500"}
-                  size={"xs"}
-                >
-                  3
-                </Badge>
-              </Box>
-
               {isAuthenticated && (
                 <Badge
                   bg={isAuthenticated ? "green.500" : "gray.400"}

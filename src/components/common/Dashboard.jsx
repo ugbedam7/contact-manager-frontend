@@ -9,47 +9,17 @@ import {
 } from "@chakra-ui/react";
 import { useColorModeValue } from "@/components/ui/color-mode";
 import { FiBell, FiLogOut } from "react-icons/fi";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ContactGrid from "../contacts/ContactGrid";
-import CreateContactModal from "../contacts/CreateContactModal";
 import { useAuth } from "../AuthContext";
 import { ColorModeButton } from "@/components/ui/color-mode";
-import { FaArrowRight } from "react-icons/fa";
-// import { BASE_URL } from "../../App";
 
 const UserDashboard = () => {
   const [user, setUser] = useState(sessionStorage.getItem("user"));
   const [contacts, setContacts] = useState([]);
   const { logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   setUser(sessionStorage.getItem("user"));
-
-  //   const fetchContacts = async () => {
-  //     const userId = sessionStorage.getItem("userId");
-  //     try {
-  //       const res = await fetch(`${BASE_URL}/api/contacts?userId=${userId}`, {
-  //         headers: {
-  //           Authorization: `Bearer ${sessionStorage.getItem("authToken")}` // Pass token for authentication
-  //         }
-  //       });
-
-  //       if (!res.ok) {
-  //         throw new Error("Failed to fetch contacts");
-  //       }
-
-  //       const data = await res.json();
-  //       console.log(data);
-  //       setContacts(data);
-  //     } catch (error) {
-  //       console.error("Error fetching contacts:", error);
-  //     }
-  //   };
-
-  //   fetchContacts();
-  // }, []);
 
   const handleLogout = () => {
     logout();

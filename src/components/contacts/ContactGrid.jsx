@@ -25,10 +25,9 @@ const ContactGrid = ({
       setIsLoading(true);
       try {
         const endpoint = userId
-          ? `${BASE_URL}/api/contacts?userId=${userId}` // Fetch only the user's contacts
+          ? `${BASE_URL}/api/contacts?userId=${userId}`
           : `${BASE_URL}/api/contacts`;
 
-        // const res = await fetch(`${BASE_URL}/api/contacts`);
         const res = await fetch(endpoint);
         const data = await res.json();
 
@@ -75,7 +74,13 @@ const ContactGrid = ({
       //   </Text>
       // </Flex>
       <Flex justifyContent="center" gap={3}>
-        <Text color={textColor} bg={bgColor} p={2} borderRadius={4}>
+        <Text
+          fontSize="xl"
+          color={textColor}
+          bg={bgColor}
+          p={2}
+          borderRadius={4}
+        >
           No Contacts Yet. Create One{" "}
           <span style={{ display: "inline-block" }}>
             <FaArrowRight />
