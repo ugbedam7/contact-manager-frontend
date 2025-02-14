@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { BASE_URL } from "../../App";
 import SmallContactVaultLogo from "../../components/svgs/Logo";
 
@@ -9,6 +8,12 @@ export const SignUp = () => {
   const [isLoginActive, setLoginActive] = useState(false);
   const navigate = useNavigate();
   const [bgLoaded, setBgLoaded] = useState(false);
+  const [data, setData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: ""
+  });
 
   useEffect(() => {
     const img = new Image();
@@ -22,12 +27,6 @@ export const SignUp = () => {
    * state drives the form's UI and vice versa.
    */
 
-  const [data, setData] = useState({
-    fullname: "",
-    email: "",
-    password: "",
-  });
-
   const handleChange = (event) => {
     const value = event.target.value;
     setData({ ...data, [event.target.name]: value });
@@ -35,20 +34,25 @@ export const SignUp = () => {
 
   const register = async (e) => {
     e.preventDefault();
+    if (data.password.length < 6) {
+      toast.error("Password must be at least 6 characters.");
+      return;
+    }
 
     const userData = {
-      fullname: data.fullname,
+      firstname: data.firstname,
+      lastname: data.lastname,
       email: data.email,
-      password: data.password,
+      password: data.password
     };
 
     try {
       const res = await fetch(`${BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify(userData)
       });
 
       const result = await res.json();
@@ -93,21 +97,42 @@ export const SignUp = () => {
                 <h1 className="text-3xl font-semibold">Create Account</h1>
               </div>
 
-              <div className="form-outline mb-4">
-                <label htmlFor="fullname" className="mb-1 fs-5">
-                  Fullname
-                </label>
-                <input
-                  onChange={handleChange}
-                  type="text"
-                  id="fullname"
-                  name="fullname"
-                  className="rounded-3 w-100 px-3 fs-5"
-                  required
-                />
+              <div className="d-flex gap-3 mb-2">
+                <div className="form-outline flex-fill">
+                  <label htmlFor="firstname" className="mb-1 fs-5">
+                    Firstname
+                  </label>
+                  <input
+                    autoFocus
+                    onKeyDown={(e) =>
+                      e.key === "Enter" &&
+                      document.getElementById("firstname").focus()
+                    }
+                    onChange={handleChange}
+                    type="text"
+                    id="firstname"
+                    name="firstname"
+                    className="rounded-3 w-100 px-3 fs-5"
+                    required
+                  />
+                </div>
+
+                <div className="form-outline flex-fill">
+                  <label htmlFor="lastname" className="mb-1 fs-5">
+                    Lastname
+                  </label>
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    id="lastname"
+                    name="lastname"
+                    className="rounded-3 w-100 px-3 fs-5"
+                    required
+                  />
+                </div>
               </div>
 
-              <div className="form-outline mb-4">
+              <div className="form-outline mb-2 flex-fill">
                 <label htmlFor="email" className="form-label mb-1 fs-5">
                   Email address
                 </label>
@@ -121,7 +146,7 @@ export const SignUp = () => {
                 />
               </div>
 
-              <div className="form-outline mb-3">
+              <div className="form-outline mb-5 flex-fill">
                 <label htmlFor="password" className="form-label mb-1 fs-5">
                   Password
                 </label>
@@ -133,19 +158,6 @@ export const SignUp = () => {
                   className="rounded-3 w-100 px-3 fs-5"
                   required
                 />
-              </div>
-
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="form-check mb-0">
-                  <input
-                    className="form-check-input me-2"
-                    type="checkbox"
-                    id="remember"
-                  />
-                  <label className="form-check-label" htmlFor="remember">
-                    Remember Me
-                  </label>
-                </div>
               </div>
 
               <div className="text-center text-lg-start mt-4 pt-2">

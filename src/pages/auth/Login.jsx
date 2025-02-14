@@ -69,9 +69,15 @@ const Login = () => {
                   Email Address
                 </label>
                 <input
+                  autoFocus
+                  onKeyDown={(e) =>
+                    e.key === "Enter" &&
+                    document.getElementById("email").focus()
+                  }
                   onChange={handleChange}
                   className="rounded-3 w-100 px-3 fs-5"
                   type="email"
+                  id="email"
                   name="email"
                   required
                 />
